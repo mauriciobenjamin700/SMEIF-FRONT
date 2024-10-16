@@ -1,0 +1,476 @@
+@media only screen and (max-width: 576px){
+.button{
+    border-radius: 2%;
+    background-color: rgba(167, 242, 165);
+    padding: 5px 20px;
+    font-size: 20px;
+    box-shadow: 1px 1px;
+}
+
+.button:hover{
+    background-color: rgba(167, 242, 165, 0.5) ;
+    cursor: pointer;
+}
+
+.generic_frame{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+}
+
+.generic_frame img{
+    width: 70%;
+}
+
+#lista_botoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+#lista_botoes .button{
+    background-color: rgba(167, 242, 165, 0.17);
+    padding: 20px 20px;
+    font-size: 24px;
+    font-family: 'Inter , Arial';
+    font-style: italic;
+    box-shadow: 1px 1px;
+    min-width: 300px;
+}
+
+#lista_botoes .button:hover{
+    background-color: rgba(167, 242, 165, 0.90) ;
+    cursor: pointer;
+}
+
+/* ================================================================= */
+
+.input{
+    border-radius:2%;
+    max-width: 700px;
+    min-width: 290px;
+    padding: 10px 20px;
+    text-align:start; 
+}
+
+
+.botoes_de_lado{
+    display:flex;
+    flex-direction:row; 
+    gap: 20px;
+}
+
+.botoes_de_lado .button{
+    margin-left: 15%;
+}
+
+#conteudo_frame2{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+}
+
+@media only screen and (min-width: 576px){
+    .button{
+        border-radius: 2%;
+        background-color: rgba(167, 242, 165);
+        padding: 5px 20px;
+        font-size: 20px;
+        box-shadow: 1px 1px;
+    }
+    
+    .button:hover{
+        background-color: rgba(167, 242, 165, 0.5) ;
+        cursor: pointer;
+    }
+    
+    .generic_frame{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        padding-top: 5%;
+        gap: 20px;
+    }
+    
+    .generic_frame img{
+        width: 70%;
+    }
+    
+    #lista_botoes{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    #lista_botoes .button{
+        background-color: rgba(167, 242, 165, 0.17);
+        padding: 20px 20px;
+        font-size: 24px;
+        font-family: 'Inter , Arial';
+        font-style: italic;
+        box-shadow: 1px 1px;
+        min-width: 360px;
+    }
+    
+    #lista_botoes .button:hover{
+        background-color: rgba(167, 242, 165, 0.90) ;
+        cursor: pointer;
+    }
+    
+    
+    /* ================================================================= */
+    
+    .input{
+        border-radius:2%;
+        max-width: 700px;
+        min-width: 290px;
+        padding: 10px 20px;
+        text-align:start; 
+    }
+    
+    
+    .botoes_de_lado{
+        display:flex;
+        flex-direction:row; 
+        gap: 20px;
+    }
+    
+    .botoes_de_lado .button{
+        margin-left: 15%;
+    }
+    
+    #conteudo_frame2{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+}
+
+@media only screen and (min-width: 744px) {
+    .button{
+        border-radius: 2%;
+        background-color: rgba(167, 242, 165);
+        padding: 5px 20px;
+        font-size: 20px;
+        box-shadow: 1px 1px;
+    }
+    
+    .button:hover{
+        background-color: rgba(167, 242, 165, 0.5) ;
+        cursor: pointer;
+    }
+    
+    
+    .generic_frame{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .generic_frame img{
+        width: 60%;
+    }
+    
+    #lista_botoes{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    #lista_botoes .button{
+        background-color: rgba(167, 242, 165, 0.17);
+        padding: 10px 20px;
+        font-size: 36px;
+        box-shadow: 1px 1px;
+        min-width: 460px;
+        
+    
+    }
+    
+    #lista_botoes .button:hover{
+        background-color: rgba(167, 242, 165, 0.90) ;
+        cursor: pointer;
+    }
+    
+    
+    /* ================================================================= */
+    
+    .input{
+        border-radius:2%;
+        width: 60%;
+        max-width: 900px;
+        min-width: 500px;
+        padding: 10px 20px;
+        text-align:start;
+        font-size: 2.4rem; 
+    }
+
+    .botoes_de_lado{
+        display:flex;
+        flex-direction:row; 
+        gap:20px;
+    }
+
+    .botoes_de_lado .button{
+        font-size: 2.3rem;
+        margin-left: 15%;
+    }
+    
+    
+    #conteudo_frame2{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+}
+
+@media only screen and (min-width: 992px){
+    .button{
+        border-radius: 2%;
+        background-color: rgba(167, 242, 165);
+        padding: 5px 20px;
+        font-size: 20px;
+        box-shadow: 1px 1px;
+    }
+    
+    .button:hover{
+        background-color: rgba(167, 242, 165, 0.5) ;
+        cursor: pointer;
+    }
+    
+    
+    .generic_frame{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .generic_frame img{
+        width: 50%;
+    }
+    
+    #lista_botoes{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    #lista_botoes .button{
+        background-color: rgba(167, 242, 165, 0.17);
+        padding: 10px 20px;
+        font-size: 36px;
+        box-shadow: 1px 1px;
+        min-width: 460px;
+        
+    
+    }
+    
+    #lista_botoes .button:hover{
+        background-color: rgba(167, 242, 165, 0.90) ;
+        cursor: pointer;
+    }
+    
+    
+    /* ================================================================= */
+    
+    .input{
+        border-radius:2%;
+        width: 60%;
+        max-width: 800px;
+        min-width: 600px;
+        padding: 10px 20px;
+        text-align:start;
+        font-size: 2.4rem; 
+    }
+
+    .botoes_de_lado{
+        display:flex;
+        flex-direction:row; 
+    }
+
+    .botoes_de_lado .button{
+        font-size: 2.3rem;
+        margin-left: 15%;
+    }
+    
+    
+    #conteudo_frame2{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+}
+
+@media only screen and (min-width:1200px){
+    .button{
+        border-radius: 2%;
+        background-color: rgba(167, 242, 165);
+        padding: 5px 20px;
+        font-size: 20px;
+        box-shadow: 1px 1px;
+    }
+    
+    .button:hover{
+        background-color: rgba(167, 242, 165, 0.5) ;
+        cursor: pointer;
+    }
+    
+    
+    .generic_frame{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .generic_frame img{
+        width: 40%;
+    }
+    
+    #lista_botoes{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    #lista_botoes .button{
+        background-color: rgba(167, 242, 165, 0.17);
+        padding: 10px 20px;
+        font-size: 36px;
+        box-shadow: 1px 1px;
+        min-width: 460px;
+        
+    
+    }
+    
+    #lista_botoes .button:hover{
+        background-color: rgba(167, 242, 165, 0.90) ;
+        cursor: pointer;
+    }
+    
+    
+    /* ================================================================= */
+    
+    .input{
+        border-radius:2%;
+        width: 60%;
+        max-width: 800px;
+        min-width: 600px;
+        padding: 10px 20px;
+        text-align:start;
+        font-size: 2.4rem; 
+    }
+
+    .botoes_de_lado{
+        display:flex;
+        flex-direction:row; 
+    }
+
+    .botoes_de_lado .button{
+        font-size: 1.4rem;
+        margin-left: 15%;
+    }
+    
+    
+    #conteudo_frame2{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+}
+
+
+@media only screen and (min-width: 1440px) {
+    .button{
+        border-radius: 2%;
+        background-color: rgba(167, 242, 165);
+        padding: 5px 20px;
+        font-size: 20px;
+        box-shadow: 1px 1px;
+    }
+    
+    .button:hover{
+        background-color: rgba(167, 242, 165, 0.5) ;
+        cursor: pointer;
+    }
+    
+    
+    .generic_frame{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 20px;
+        padding-top: 0px;
+    }
+    
+    .generic_frame img{
+        width: 20%;
+    }
+    
+    #lista_botoes{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    #lista_botoes .button{
+        background-color: rgba(167, 242, 165, 0.17);
+        padding: 5px 20px;
+        font-size: 24px;
+        box-shadow: 1px 1px;
+        min-width: 460px;
+    }
+    
+    #lista_botoes .button:hover{
+        background-color: rgba(167, 242, 165, 0.90) ;
+        cursor: pointer;
+    }
+    
+    
+    /* ================================================================= */
+    
+    .input{
+        border-radius:2%;
+        width: 60%;
+        max-width: 700px;
+        min-width: 500px;
+        padding: 10px 20px;
+        text-align:start;
+        font-size: 1.4rem; 
+    }
+
+    .botoes_de_lado{
+        display:flex;
+        flex-direction:row; 
+    }
+
+    .botoes_de_lado .button{
+        font-size: 1.4rem;
+        margin-left: 15%;
+    }
+    
+    
+    #conteudo_frame2{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+}
