@@ -1,6 +1,6 @@
 const Header = () => {
     return(
-        <header style={{
+        <header className="header" style={{
             backgroundColor: 'rgba(167, 242, 165)',
             height: '20px',
             width: '100%',

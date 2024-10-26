@@ -1,3 +1,11 @@
+.error-message{
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1.3rem;
+    color: red;
+    text-align: center;
+}
+
 @media only screen and (max-width: 576px){
 .button{
     border-radius: 2%;
@@ -212,7 +220,7 @@
         min-width: 500px;
         padding: 10px 20px;
         text-align:start;
-        font-size: 2.4rem; 
+        font-size: 1.4rem; 
     }
 
     .botoes_de_lado{
@@ -222,7 +230,7 @@
     }
 
     .botoes_de_lado .button{
-        font-size: 2.3rem;
+        font-size: 1.3rem;
         margin-left: 15%;
     }
     
@@ -293,7 +301,7 @@
         min-width: 600px;
         padding: 10px 20px;
         text-align:start;
-        font-size: 2.4rem; 
+        font-size: 1.4rem; 
     }
 
     .botoes_de_lado{
@@ -302,7 +310,7 @@
     }
 
     .botoes_de_lado .button{
-        font-size: 2.3rem;
+        font-size: 1.3rem;
         margin-left: 15%;
     }
     
@@ -373,12 +381,13 @@
         min-width: 600px;
         padding: 10px 20px;
         text-align:start;
-        font-size: 2.4rem; 
+        font-size: 1.4rem; 
     }
 
     .botoes_de_lado{
         display:flex;
-        flex-direction:row; 
+        flex-direction:row;
+        gap: 30px;
     }
 
     .botoes_de_lado .button{
@@ -459,6 +468,7 @@
     .botoes_de_lado{
         display:flex;
         flex-direction:row; 
+        gap: 30px;
     }
 
     .botoes_de_lado .button{

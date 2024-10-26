@@ -1,5 +1,4 @@
 const Button = ({text,color,onFunction}) => {
-    console.log(color);
     if (color == null){
         return (
             <button className="button" onClick={onFunction}>

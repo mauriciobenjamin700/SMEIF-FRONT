@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.main{
+    flex: 1;
+}
+
+.header{
+    margin-bottom: 3%;
+    z-index: 2;
+}
+
+/* Cor da barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+}
+
+/* Cor de fundo do track (pista) da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* Cor do thumb (parte que se move) da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background-color: #a7f2a5; /* Verde para a barra de rolagem */
+
+}
+
+/* Opcional: Cor quando o mouse passa sobre o thumb */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #228B22; /* Tom mais escuro de verde */
+}
+
+
+html, body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen and (max-width:576px) {
+    .footer{
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }   
+}
+
+@media only screen and (min-width:576px) {
+    .footer{
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+@media only screen and (min-width:744px) {
+    .footer{
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+@media only screen and (min-width:992px) {
+    .footer{
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .footer{
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+@media only screen and (min-width:1440px) {
+    .footer{
+        margin-top: 5%;
+        position: static;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
