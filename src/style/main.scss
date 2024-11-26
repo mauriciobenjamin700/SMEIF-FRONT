@@ -1,0 +1,54 @@
+@use "colors" as color;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.main{
+    flex: 1;
+}
+
+/* Cor da barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+}
+
+/* Cor de fundo do track (pista) da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* Cor do thumb (parte que se move) da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background-color: color.$green; /* Verde para a barra de rolagem */
+
+}
+
+/* Opcional: Cor quando o mouse passa sobre o thumb */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #228B22; /* Tom mais escuro de verde */
+}
+
+
+html, body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.footer{
+    margin-top: 5%;
+    position: static;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}   
