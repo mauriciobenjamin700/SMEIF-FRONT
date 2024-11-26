@@ -1,13 +1,13 @@
 
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-import "./coordination.scss";
+import "./Coordination.scss";
 import ImageButton from "../../components/ImagemButton";
-import RegisterPage from "./RegisterPeople/register";
-import ManagePage from "./ManageRegistration/management";
-import SendCommunications from "./SendCommunications";
-import ManageClasses from "./ManageClasses";
-import RegisterOccurrences from "./RegisterOccurrences";
+import RegisterPage from "./RegisterPeople/Register.jsx";
+import ManagePage from "./ManageRegistration/Management.jsx";
+import SendCommunications from "./SendCommunications/index.jsx";
+import ManageClasses from "./ManageClasses/index.jsx";
+import RegisterOccurrences from "./RegisterOccurrences/index.jsx";
 import ManageHorary from "./ManageHorary";
 
 const Menu = () => {

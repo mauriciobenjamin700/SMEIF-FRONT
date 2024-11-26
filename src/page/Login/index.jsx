@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
 
-import "./login.scss";
+import "./Login.scss";
 import image_login_1 from "../../assets/login_image_1.png";
 import image_login_2 from "../../assets/login_image_2.png";
 import olho_aberto from "../../assets/olho_aberto.png";

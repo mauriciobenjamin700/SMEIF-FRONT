@@ -37,7 +37,26 @@ const Header = () => {
                         break;
                 }
             }
+            else if(location.pathname.startsWith("/Coordenacao/gerenciar_turmas")){
+                console.log("aqui")
+                switch(location.pathname){
+                    case("/Coordenacao/gerenciar_turmas"):
+                        setHeaderTitle("Gerenciamento de Turmas");
+                        setImageHeader(true);
+                        break;
+                }
+            }
+            else if(location.pathname.startsWith("/Coordenacao/gerenciar_horarios")){
+                console.log("aqui")
+                switch(location.pathname){
+                    case("/Coordenacao/gerenciar_horarios"):
+                        setHeaderTitle("Gerenciar Horários");
+                        setImageHeader(true);
+                        break;
+                }
+            }
             else if(location.pathname.startsWith("/Coordenacao/gerencia")){
+                console.log("aqui")
                 switch(location.pathname){
                     case("/Coordenacao/gerencia"):
                         setHeaderTitle("Gerenciar Cadastros");
@@ -63,11 +82,17 @@ const Header = () => {
                         setHeaderTitle("Envio de Comunicado");
                         setImageHeader(true);
                         break;
-                    case("/Coordenacao/enviar_comunicado"):
-                        setHeaderTitle("Envio de Comunicado");
+                }
+            
+            }
+            else if(location.pathname.startsWith("/Coordenacao/registrar_ocorrencias")){
+                switch(location.pathname){
+                    case("/Coordenacao/registrar_ocorrencias"):
+                        setHeaderTitle("Registro de Ocorrências e Advertências");
                         setImageHeader(true);
                         break;
                 }
+            
             }
         }
 

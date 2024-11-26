@@ -1,5 +1,5 @@
-@use "colors" as color; 
-@use "breakpoints" as *;
+@use "_colors" as color; 
+@use "_breakpoints" as *;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
@@ -42,6 +42,7 @@
         }
 
         select{
+            background-color: color.$light_yellow;
             min-width: 100%;
             font-family: 'Inter';
             max-height: 39.43px;
