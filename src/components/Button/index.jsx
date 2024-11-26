@@ -8,7 +8,7 @@ const Button = ({text,color,onFunction}) => {
     }
     else{
         return (
-            <button style={{backgroundColor:color}}  className="button" onClick={onFunction}>
+            <button style={{backgroundColor:color}} type="button" className="button" onClick={onFunction}>
                 {text}
             </button>
         );    

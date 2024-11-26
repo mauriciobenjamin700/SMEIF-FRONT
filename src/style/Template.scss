@@ -1,0 +1,24 @@
+@use "colors" as color; 
+@use "breakpoints" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@media only screen and ($very-small) {
+    
+}
+
+@media only screen and ($small) {
+    
+}
+
+@media only screen and ($medium) {
+}
+
+@media only screen and ($large) {
+}
+
+@media only screen and ($extra-large) {
+}
+
+@media only screen and ($extra-extra-large) {    
+}

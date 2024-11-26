@@ -1,7 +1,8 @@
+@use "colors" as color;
+
 * {
     margin: 0;
     padding: 0;
-
 }
 
 #root{
@@ -12,11 +13,6 @@
 
 .main{
     flex: 1;
-}
-
-.header{
-    margin-bottom: 3%;
-    z-index: 2;
 }
 
 /* Cor da barra de rolagem */
@@ -31,7 +27,7 @@
 
 /* Cor do thumb (parte que se move) da barra de rolagem */
 ::-webkit-scrollbar-thumb {
-    background-color: #a7f2a5; /* Verde para a barra de rolagem */
+    background-color: color.$green; /* Verde para a barra de rolagem */
 
 }
 
@@ -49,62 +45,10 @@ html, body{
     padding: 0;
 }
 
-@media only screen and (max-width:576px) {
-    .footer{
-        margin-top: 5%;
-        position: static;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }   
-}
-
-@media only screen and (min-width:576px) {
-    .footer{
-        margin-top: 5%;
-        position: static;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }
-}
-
-@media only screen and (min-width:744px) {
-    .footer{
-        margin-top: 5%;
-        position: static;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }
-}
-
-@media only screen and (min-width:992px) {
-    .footer{
-        margin-top: 5%;
-        position: static;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }
-}
-
-@media only screen and (min-width:1200px) {
-    .footer{
-        margin-top: 5%;
-        position: static;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }
-}
-
-@media only screen and (min-width:1440px) {
-    .footer{
-        margin-top: 5%;
-        position: static;
-        width: 100%;
-        left: 0;
-        bottom: 0;
-    }
-}
+.footer{
+    margin-top: 5%;
+    position: static;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}   

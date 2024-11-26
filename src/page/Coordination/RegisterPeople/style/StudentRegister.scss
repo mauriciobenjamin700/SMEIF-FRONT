@@ -1,0 +1,42 @@
+@use "../../../../style/breakpoints" as *;
+
+@media only screen and ($very-small) {
+    .responsible-field{
+        margin-bottom: 10px;
+
+        button{
+            margin-top: 10px;
+        }
+    }
+
+    
+}
+
+@media only screen and ($small) {
+    .responsible-field{
+        margin-bottom: 10px;
+
+        button{
+            margin-top: 10px;
+        }
+    }
+}
+
+@media only screen and ($medium) {
+    .responsible-field{
+        margin-bottom: 10px;
+
+        button{
+            margin-top: 10px;
+        }
+    }
+}
+
+@media only screen and ($large) {
+}
+
+@media only screen and ($extra-large) {
+}
+
+@media only screen and ($extra-extra-large) {    
+}

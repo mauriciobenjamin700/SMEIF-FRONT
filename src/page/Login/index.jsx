@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
 
-import "./login.css";
+import "./login.scss";
 import image_login_1 from "../../assets/login_image_1.png";
 import image_login_2 from "../../assets/login_image_2.png";
+import olho_aberto from "../../assets/olho_aberto.png";
+import olho_fechado from "../../assets/olho_fechado.png";
 import Button from "../../components/Button/index.jsx";
 import Input from "../../components/Input/index.jsx";
 
@@ -20,7 +22,7 @@ const Frame1 = ({ onFunction }) => {
       <div id="lista_botoes">
         <Button text={"Pais ou Responsavel"} onFunction={() => onFunction(1, UserRoles.Pais)} />
         <Button text={"Professores"} onFunction={() => onFunction(1, UserRoles.Professores)} />
-        <Button text={"Coordenação"} onFunction={() => onFunction(1, UserRoles.Coordenacao)} />
+        <Button text={"Coordenação"} onFunction={() => onFunction(1, UserRoles.Coordination)} />
       </div>
     </div>
   );
@@ -31,6 +33,8 @@ const Frame2 = ({ onFunction, level }) => {
   const [password, setPassword] = useState("")
   const [messageError, setMessageError] = useState("")
   const navigate = useNavigate();
+  const errorRef = useRef(null);
+  
 
   const login = () =>{
     const api_url = `${import.meta.env.VITE_BASE_URL_API}user/login`
@@ -47,26 +51,50 @@ const Frame2 = ({ onFunction, level }) => {
       }
     })
     .catch(err => {
-      setMessageError("Login ou senha inválidos!");
+      setMessageError("Login ou senha inválidos! ");
+      setTimeout(() => {
+        errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     });
   }
 
+  const handleKeyPress = (event) =>{
+    if (event.key === 'Enter'){
+      login();
+    } 
+  }
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="generic_frame">
       <img src={image_login_2} alt="Imagem de Login 2" />
-      <div id="conteudo_frame2">
+      <div id="conteudo_frame2" onKeyDown={handleKeyPress}>
         <Input 
-          text={"Usuário"} 
           onChange={setUser} 
           place={"CPF"}
           />
         
-        <Input 
-          text={"Senha"} 
-          onChange={setPassword} 
-          place={"Senha"}
+        <div id='input_password'>
+          <Input 
+            type={showPassword ? "text" : "password"}
+            onChange={setPassword} 
+            place={"Senha"}
           />
+          
+          <button
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <img src={olho_fechado} className='eyes'/> : <img src={olho_aberto} className='eyes'/> }
+          </button>
+        </div>
+        
+
+
         <div className="botoes_de_lado">
           <Button 
             className="botao_voltar" 
@@ -79,7 +107,7 @@ const Frame2 = ({ onFunction, level }) => {
             onFunction={() => login()} 
             />
         </div>
-        {messageError && <p className="error-message">{messageError} </p>}
+        {messageError && <p ref={errorRef} className="error-message">{messageError} </p>}
       </div>
     </div>
   );
@@ -89,6 +117,7 @@ const Login = () => {
   const list_frame = [Frame1, Frame2];
   const [currentFrame, setCurrentFrame] = useState(0);
   const [acessLevel, setAcessLevel] = useState(0);
+
   const NextFrame = (frame,level) => {
     setCurrentFrame(frame);
     setAcessLevel(level);

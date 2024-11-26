@@ -1,3 +1,6 @@
+@use "../../style/colors" as color;
+@use "../../style/breakpoints" as *;
+
 .error-message{
     margin-top: 10px;
     width: 100%;
@@ -6,17 +9,17 @@
     text-align: center;
 }
 
-@media only screen and (max-width: 576px){
+@media only screen and ($very-small){
 .button{
     border-radius: 2%;
-    background-color: rgba(167, 242, 165);
+    background-color: color.$green;
     padding: 5px 20px;
     font-size: 20px;
     box-shadow: 1px 1px;
 }
 
 .button:hover{
-    background-color: rgba(167, 242, 165, 0.5) ;
+    background-color: grey_green;
     cursor: pointer;
 }
 
@@ -81,19 +84,34 @@
     gap: 20px;
     align-items: flex-start;
 }
+
+#input_password{
+    button{
+        margin-left: -50px;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        .eyes{
+            width: auto;
+            max-height: 30px;
+        }
+    }
+            
+}
 }
 
-@media only screen and (min-width: 576px){
+@media only screen and ($small){
     .button{
         border-radius: 2%;
-        background-color: rgba(167, 242, 165);
+        background-color: color.$green;
         padding: 5px 20px;
         font-size: 20px;
         box-shadow: 1px 1px;
     }
     
     .button:hover{
-        background-color: rgba(167, 242, 165, 0.5) ;
+        background-color: grey_green ;
         cursor: pointer;
     }
     
@@ -159,20 +177,35 @@
         gap: 20px;
         align-items: flex-start;
     }
+
+    #input_password{
+        button{
+            margin-left: -50px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .eyes{
+                width: auto;
+                max-height: 30px;
+            }
+        }
+                
+    }
     
 }
 
-@media only screen and (min-width: 744px) {
+@media only screen and ($medium) {
     .button{
         border-radius: 2%;
-        background-color: rgba(167, 242, 165);
+        background-color: color.$green;
         padding: 5px 20px;
         font-size: 20px;
         box-shadow: 1px 1px;
     }
     
     .button:hover{
-        background-color: rgba(167, 242, 165, 0.5) ;
+        background-color: grey_green ;
         cursor: pointer;
     }
     
@@ -241,19 +274,34 @@
         gap: 20px;
         align-items: stretch;
     }
+
+    #input_password{
+        button{
+            margin-left: -50px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .eyes{
+                width: auto;
+                max-height: 30px;
+            }
+        }
+                
+    }
 }
 
-@media only screen and (min-width: 992px){
+@media only screen and ($large){
     .button{
         border-radius: 2%;
-        background-color: rgba(167, 242, 165);
+        background-color: color.$green;
         padding: 5px 20px;
         font-size: 20px;
         box-shadow: 1px 1px;
     }
     
     .button:hover{
-        background-color: rgba(167, 242, 165, 0.5) ;
+        background-color: grey_green ;
         cursor: pointer;
     }
     
@@ -321,19 +369,34 @@
         gap: 20px;
         align-items: stretch;
     }
+
+    #input_password{
+        button{
+            margin-left: -50px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .eyes{
+                width: auto;
+                max-height: 30px;
+            }
+        }
+                
+    }
 }
 
-@media only screen and (min-width:1200px){
+@media only screen and ($extra-large){
     .button{
         border-radius: 2%;
-        background-color: rgba(167, 242, 165);
+        background-color: color.$green;
         padding: 5px 20px;
         font-size: 20px;
         box-shadow: 1px 1px;
     }
     
     .button:hover{
-        background-color: rgba(167, 242, 165, 0.5) ;
+        background-color: grey_green ;
         cursor: pointer;
     }
     
@@ -344,33 +407,30 @@
         width: 100%;
         align-items: center;
         gap: 20px;
-    }
-    
-    .generic_frame img{
-        width: 40%;
+
+        img{
+            width: 40%;
+        }
     }
     
     #lista_botoes{
         display: flex;
         flex-direction: column;
         gap: 30px;
-    }
-    
-    #lista_botoes .button{
-        background-color: rgba(167, 242, 165, 0.17);
-        padding: 10px 20px;
-        font-size: 36px;
-        box-shadow: 1px 1px;
-        min-width: 460px;
-        
-    
-    }
-    
-    #lista_botoes .button:hover{
-        background-color: rgba(167, 242, 165, 0.90) ;
-        cursor: pointer;
-    }
-    
+
+        .button{
+            background-color: rgba(167, 242, 165, 0.17);
+            padding: 10px 20px;
+            font-size: 36px;
+            box-shadow: 1px 1px;
+            min-width: 460px;
+        }
+
+        .button:hover{
+            background-color: rgba(167, 242, 165, 0.90) ;
+            cursor: pointer;
+        }
+    } 
     
     /* ================================================================= */
     
@@ -388,13 +448,12 @@
         display:flex;
         flex-direction:row;
         gap: 30px;
-    }
 
-    .botoes_de_lado .button{
-        font-size: 1.4rem;
-        margin-left: 15%;
-    }
-    
+        .button{
+            font-size: 1.4rem;
+            margin-left: 15%;
+        }
+    }    
     
     #conteudo_frame2{
         display: flex;
@@ -402,20 +461,34 @@
         gap: 20px;
         align-items: stretch;
     }
+
+    #input_password{
+        button{
+            margin-left: -50px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .eyes{
+                width: auto;
+                max-height: 30px;
+            }
+        }
+                
+    }
 }
 
-
-@media only screen and (min-width: 1440px) {
+@media only screen and ($extra-extra-large) {
     .button{
         border-radius: 2%;
-        background-color: rgba(167, 242, 165);
+        background-color: color.$green;
         padding: 5px 20px;
         font-size: 20px;
         box-shadow: 1px 1px;
     }
     
     .button:hover{
-        background-color: rgba(167, 242, 165, 0.5) ;
+        background-color: grey_green ;
         cursor: pointer;
     }
     
@@ -425,33 +498,32 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
         padding-top: 0px;
-    }
-    
-    .generic_frame img{
-        width: 20%;
+
+        img{
+            width: 20%;
+        }
     }
     
     #lista_botoes{
         display: flex;
         flex-direction: column;
         gap: 30px;
+
+        .button{
+            background-color: rgba(167, 242, 165, 0.17);
+            padding: 5px 20px;
+            font-size: 24px;
+            box-shadow: 1px 1px;
+            min-width: 460px;
+        }
+
+        .button:hover{
+            background-color: rgba(167, 242, 165, 0.90) ;
+            cursor: pointer;
+        }
     }
-    
-    #lista_botoes .button{
-        background-color: rgba(167, 242, 165, 0.17);
-        padding: 5px 20px;
-        font-size: 24px;
-        box-shadow: 1px 1px;
-        min-width: 460px;
-    }
-    
-    #lista_botoes .button:hover{
-        background-color: rgba(167, 242, 165, 0.90) ;
-        cursor: pointer;
-    }
-    
     
     /* ================================================================= */
     
@@ -469,18 +541,32 @@
         display:flex;
         flex-direction:row; 
         gap: 30px;
-    }
 
-    .botoes_de_lado .button{
-        font-size: 1.4rem;
-        margin-left: 15%;
+        .button{
+            font-size: 1.4rem;
+            margin-left: 15%;
+        }
     }
-    
     
     #conteudo_frame2{
         display: flex;
         flex-direction: column;
         gap: 20px;
         align-items: stretch;
+    }
+
+    #input_password{
+        button{
+            margin-left: -50px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .eyes{
+                width: auto;
+                max-height: 30px;
+            }
+        }
+                
     }
 }

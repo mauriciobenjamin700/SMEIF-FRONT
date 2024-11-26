@@ -1,0 +1,492 @@
+@use "colors" as color; 
+@use "breakpoints" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@media only screen and ($very-small) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            margin-left: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            font-style: italic;
+        }
+
+        hr{
+            background-color: color.$light_brown;
+            height: 5.78px;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        h5{
+            margin-top: 8px;
+            font-family: 'Inter';
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.2rem;
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+        }
+
+        select{
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+            font-size: 1.2rem;
+
+            option{
+                margin-top: 5px;
+                font-size: small;
+                padding: 5px;
+            }
+        }
+
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: color.$grey;
+            padding: 10px;
+            min-width: 90%;
+        }
+
+        .botoes-de-lado{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            .button{
+                max-height: 35.54px;
+                width: auto;
+                flex: 1;
+                font-size: 13px;
+                white-space: nowrap;
+                border-radius: 12.32px;
+
+            }
+        }
+
+    }
+
+}
+
+@media only screen and ($small) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            margin-left: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            font-style: italic;
+        }
+
+        hr{
+            background-color: color.$light_brown;
+            height: 5.78px;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        h5{
+            margin-top: 10px;
+            font-family: 'Inter';
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.2rem;
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+        }
+
+        select{
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+            font-size: 1.2rem;
+
+            option{
+                margin-top: 5px;
+                font-size: small;
+                padding: 5px;
+            }
+        }
+
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: color.$grey;
+            padding: 10px;
+
+            min-width: 90%;
+        }
+
+        .botoes-de-lado{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            .button{
+                max-height: 35.54px;
+                width: auto;
+                flex: 1;
+                font-size: 13px;
+                white-space: nowrap;
+                border-radius: 12.32px;
+
+            }
+        }
+
+    }
+}
+
+@media only screen and ($medium) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            margin-left: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            font-style: italic;
+        }
+
+        hr{
+            background-color: color.$light_brown;
+            height: 5.78px;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        h5{
+            margin-top: 10px;
+            font-family: 'Inter';
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.2rem;
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+        }
+
+        select{
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+            font-size: 1.2rem;
+
+            option{
+                margin-top: 5px;
+                font-size: small;
+                padding: 5px;
+            }
+        }
+
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: color.$grey;
+            padding: 10px;
+
+            min-width: 90%;
+        }
+
+        .botoes-de-lado{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            .button{
+                max-height: 35.54px;
+                width: auto;
+                flex: 1;
+                font-size: 13px;
+                white-space: nowrap;
+                border-radius: 12.32px;
+
+            }
+        }
+
+    }
+}
+
+@media only screen and ($large) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            margin-left: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            font-style: italic;
+        }
+
+        hr{
+            background-color: color.$light_brown;
+            height: 5.78px;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        h5{
+            margin-top: 10px;
+            font-family: 'Inter';
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.2rem;
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+        }
+
+        select{
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+            font-size: 1.2rem;
+
+            option{
+                margin-top: 5px;
+                font-size: small;
+                padding: 5px;
+            }
+        }
+
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: color.$grey;
+            padding: 10px;
+
+            min-width: 90%;
+        }
+
+        .botoes-de-lado{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            .button{
+                max-height: 35.54px;
+                width: auto;
+                flex: 1;
+                font-size: 13px;
+                white-space: nowrap;
+                border-radius: 12.32px;
+
+            }
+        }
+
+    }
+}
+
+@media only screen and ($extra-large) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            margin-left: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            font-style: italic;
+        }
+
+        hr{
+            background-color: color.$light_brown;
+            height: 5.78px;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        h5{
+            margin-top: 10px;
+            font-family: 'Inter';
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.2rem;
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+        }
+
+        select{
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+            font-size: 1.2rem;
+
+            option{
+                margin-top: 5px;
+                font-size: small;
+                padding: 5px;
+            }
+        }
+
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: color.$grey;
+            padding: 10px;
+
+            min-width: 90%;
+        }
+
+        .botoes-de-lado{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            .button{
+                max-height: 35.54px;
+                width: auto;
+                flex: 1;
+                font-size: 1.3rem;
+                white-space: nowrap;
+                border-radius: 12.32px;
+
+            }
+        }
+
+    }
+}
+
+@media only screen and ($extra-extra-large) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            margin-left: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            font-style: italic;
+        }
+
+        hr{
+            background-color: color.$light_brown ;
+            height: 5.78px;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        h5{
+            margin-top: 10px;
+            font-family: 'Inter';
+            font-weight: bold;
+        }
+
+        input{
+            font-size: 1.2rem;
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+        }
+
+        select{
+            min-width: 100%;
+            font-family: 'Inter';
+            max-height: 39.43px;
+            font-size: 1.2rem;
+
+            option{
+                margin-top: 5px;
+                font-size: small;
+                padding: 5px;
+            }
+        }
+
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: color.$grey;
+            padding: 10px;
+
+            min-width: 90%;
+        }
+
+        .botoes-de-lado{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-evenly;
+            gap: 20px;
+            
+            .button{
+                max-height: 35.54px;
+                width: auto;
+                max-width: 300px;
+                flex: 1;
+                font-size: 1.2rem;
+                white-space: nowrap;
+                border-radius: 12.32px;
+                padding: 0px 5px;
+                text-align: center;
+
+            }
+
+            .button:hover{
+                filter: saturate(2);
+            }
+        }
+
+    }
+    
+}
