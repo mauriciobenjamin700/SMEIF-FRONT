@@ -37,6 +37,7 @@ const SearchRegisterPage = ({userType}) => {
                                 navigate("modificar_aluno")
                                 break;
                             case 3:
+                                navigate("modificar_professor")
                                 break;
                         }
                     }}

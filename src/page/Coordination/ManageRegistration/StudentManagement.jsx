@@ -203,7 +203,7 @@ const StudentManagementPage = () => {
                     <Button 
                         text={"Cancelar"} 
                         color={"#C97414"} 
-                        onFunction={() => navigate("/Coordenacao/cadastro")}
+                        onFunction={() => navigate("/Coordenacao/gerencia")}
                     />
                     <Button 
                         text={"Salvar Informações"} 

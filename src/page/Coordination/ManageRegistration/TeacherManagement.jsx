@@ -142,6 +142,12 @@ const TeacherManagementPage = () => {
                     <Button text={"Cancelar"} color={"#C97414"} onFunction={() => navigate("/Coordenacao/gerencia")}/>
                     <Button text={"Salvar Informações"} color={"#14AE5C"} />
                 </div>
+                <div className="remove-button">
+                    <Button 
+                        text={"Remover"}
+                        color={"#C00F0C"}
+                    />
+                </div>
             </form>
         </div>
     );
