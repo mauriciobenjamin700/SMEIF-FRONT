@@ -16,14 +16,14 @@ const SendCommunicationPage = ({userType}) => {
             />
 
             <div className="mensagem">
-                <label htmlFor="mensagem" >Mensagem</label>
+                <label htmlFor="mensagem" >Mensagem: *</label>
                 <textarea
                     name="mensagem"
                     className="input"
                     rows={5}
                     cols={40}
                     style={{minHeight:"100px"}}
-                    
+                    placeholder="Insira a Mensagem"
                 />
             </div>
             <Input
@@ -35,9 +35,11 @@ const SendCommunicationPage = ({userType}) => {
             <div className="botoes-de-lado">
                 <Button
                     color={"#E8B931"}
-                    text={"Cancelar"}                
+                    text={"Cancelar"}   
+                    onFunction={() => navigate("/Coordenacao/enviar_comunicado")}             
                 />
                 <Button
+                    color={"#14AE5C"}
                     text={"Enviar"}
                 />
             </div>        

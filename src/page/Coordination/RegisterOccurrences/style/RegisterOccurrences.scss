@@ -1,13 +1,13 @@
 @use "../../../../style/breakpoints" as *;
 
 @media only screen and ($very-small) {
-    #register-occurences{
+    #register-occurrences{
         margin-top: 25%;
     }
 }
 
 @media only screen and ($small) {
-    #register-occurences{
+    #register-occurrences{
         margin-top: 40%;
     }
 }

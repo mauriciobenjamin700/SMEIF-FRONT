@@ -9,31 +9,33 @@ const Header = () => {
     const location = useLocation();
 
     useEffect(() => {
+        if(location.pathname !== "/"){
+            setImageHeader(true);
+        }
         if(location.pathname === "/"){
             setHeaderTitle("");
-            setImageHeader(false);
         }else if(location.pathname.startsWith("/Coordenacao")){
             if(location.pathname === "/Coordenacao"){
                 setHeaderTitle("Menu Principal");
-                setImageHeader(true);
+                
             }
             else if(location.pathname.startsWith("/Coordenacao/cadastro")){
                 switch(location.pathname){
                     case("/Coordenacao/cadastro"):
                         setHeaderTitle("Cadastro de Pessoas");
-                        setImageHeader(true);
+                        
                         break;
                     case("/Coordenacao/cadastro/cadastro_pais"):
                         setHeaderTitle("Cadastro de Pais/Responsáveis");
-                        setImageHeader(true);
+                        
                         break;
                     case("/Coordenacao/cadastro/StudentRegister"):
                         setHeaderTitle("Cadastro de Alunos");
-                        setImageHeader(true);
+                        
                         break;
                     case("/Coordenacao/cadastro/cadastro_professor"):
                         setHeaderTitle("Cadastro de Professores");
-                        setImageHeader(true);
+                        
                         break;
                 }
             }
@@ -42,7 +44,7 @@ const Header = () => {
                 switch(location.pathname){
                     case("/Coordenacao/gerenciar_turmas"):
                         setHeaderTitle("Gerenciamento de Turmas");
-                        setImageHeader(true);
+                        
                         break;
                 }
             }
@@ -51,7 +53,7 @@ const Header = () => {
                 switch(location.pathname){
                     case("/Coordenacao/gerenciar_horarios"):
                         setHeaderTitle("Gerenciar Horários");
-                        setImageHeader(true);
+                        
                         break;
                 }
             }
@@ -60,19 +62,19 @@ const Header = () => {
                 switch(location.pathname){
                     case("/Coordenacao/gerencia"):
                         setHeaderTitle("Gerenciar Cadastros");
-                        setImageHeader(true);
+                        
                         break;
                     case("/Coordenacao/gerencia/gerencia_pais"):
                         setHeaderTitle("Gerenciar Cadastros de Pais");
-                        setImageHeader(true);
+                        
                         break;
                     case("/Coordenacao/gerencia/gerencia_alunos"):
                         setHeaderTitle("Gerenciar Cadastros de Alunos");
-                        setImageHeader(true);
+                        
                         break;
                     case("/Coordenacao/gerencia/gerencia_professores"):
                         setHeaderTitle("Gerenciar Cadastros de Professores");
-                        setImageHeader(true);
+                        
                         break;
                 }
             }
@@ -80,7 +82,18 @@ const Header = () => {
                 switch(location.pathname){
                     case("/Coordenacao/enviar_comunicado"):
                         setHeaderTitle("Envio de Comunicado");
-                        setImageHeader(true);
+                        break;
+                    case("/Coordenacao/enviar_comunicado/buscar_pai"):
+                        setHeaderTitle("Buscar Pai/Responsável");
+                        break;
+                    case("/Coordenacao/enviar_comunicado/buscar_turma"):
+                        setHeaderTitle("Buscar Turma");
+                        break;
+                    case("/Coordenacao/enviar_comunicado/buscar_pai/enviar_comunicado_para_pai"):
+                        setHeaderTitle("Envio de Comunicado");
+                        break;
+                    case("/Coordenacao/enviar_comunicado/buscar_turma/enviar_comunicado_para_turma"):
+                        setHeaderTitle("Envio de Comunicado");
                         break;
                 }
             
@@ -89,7 +102,7 @@ const Header = () => {
                 switch(location.pathname){
                     case("/Coordenacao/registrar_ocorrencias"):
                         setHeaderTitle("Registro de Ocorrências e Advertências");
-                        setImageHeader(true);
+                        
                         break;
                 }
             

@@ -2,6 +2,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./Coordination.scss";
+import IMAGES from "../../assets";
 import ImageButton from "../../components/ImagemButton";
 import RegisterPage from "./RegisterPeople/Register.jsx";
 import ManagePage from "./ManageRegistration/Management.jsx";
@@ -16,7 +17,7 @@ const Menu = () => {
   return (
       <div className="box-menu">
         <ImageButton
-          path={"src/assets/cadastrar_pessoas.png"}
+          path={IMAGES.cadastrar_pessoas}
           text={"Cadastro de Pessoas"}
           onFunction={() => navigate("cadastro")}
         />
@@ -36,7 +37,7 @@ const Menu = () => {
           onFunction={() => navigate("gerenciar_turmas")}
         />
         <ImageButton
-          path={"src/assets/aviso.png"}
+          path={IMAGES.aviso}
           text={"Registrar Ocorrências e Advertências"}
           onFunction={() => navigate("registrar_ocorrencias")}
         />

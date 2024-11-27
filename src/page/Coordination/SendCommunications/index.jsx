@@ -5,6 +5,7 @@ import "./style/SendCommunications.scss";
 
 import Button from "../../../components/Button";
 import SearchRegister from "./SearchRegister";
+import SendCommunicationPage from "./SendCommunication";
 
 const SendCommunicationsPage = () => {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ const SendCommunicationsPage = () => {
                 />
                 <Button
                     text={"Todos os Responsáveis"}
+                    onFunction={() => navigate("enviar_para_pais")}
                 />
                 <Button
                     text={"Histórico de Comunicados Enviados"}
@@ -42,7 +44,7 @@ const SendCommunications = () => {
             <Route path="/" element={<SendCommunicationsPage/>}/>
             <Route path="/buscar_pai/*" element={<SearchRegister userType={1} />}/>
             <Route path="/buscar_turma/*" element={<SearchRegister userType={2} />}/>
-            <Route/>
+            <Route path="/enviar_para_pais" element={<SendCommunicationPage userType={3}/>}/>
             <Route/>
         </Routes>
     );
