@@ -1,5 +1,7 @@
 import {Route, Routes, useNavigate } from "react-router-dom";
 
+import "./style/RegisterPeople.scss"
+
 import Button from "../../../components/Button";
 import ParentRegisterPage from "./ParentRegister";
 import StudentRegisterPage from "./StudentRegister";
@@ -11,7 +13,7 @@ const RegisterMenu = () => {
 
     return (
         <div className="main">
-            <div className="main-menu">
+            <div className="main-menu" id="register-people">
                 <Button text={"Cadastrar Pais/Responsáveis"} onFunction={() => navigate("cadastro_pais")} />
                 <Button text={"Cadastrar Alunos"} onFunction={() => navigate("StudentRegister")}/>
                 <Button text={"Cadastrar Professores"} onFunction={() => navigate("cadastro_professor")} />

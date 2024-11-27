@@ -1,5 +1,8 @@
 
 import { Route, Routes, useNavigate } from "react-router-dom";
+
+import "./style/SendCommunications.scss";
+
 import Button from "../../../components/Button";
 import SearchRegister from "./SearchRegister";
 
@@ -7,7 +10,6 @@ const SendCommunicationsPage = () => {
     const navigate = useNavigate();
 
     return(
-        <div className="main">
             <div className="main-menu">
                 <Button
                     text={"Destinatário Único"}
@@ -29,7 +31,6 @@ const SendCommunicationsPage = () => {
                     onFunction={() => navigate("/Coordenacao")}
                 />
             </div>
-        </div>
     );
 };
 
@@ -39,8 +40,8 @@ const SendCommunications = () => {
     return(
         <Routes>
             <Route path="/" element={<SendCommunicationsPage/>}/>
-            <Route path="/buscar_pai" element={<SearchRegister userType={1} />}/>
-            <Route path="/buscar_turma" element={<SearchRegister userType={2} />}/>
+            <Route path="/buscar_pai/*" element={<SearchRegister userType={1} />}/>
+            <Route path="/buscar_turma/*" element={<SearchRegister userType={2} />}/>
             <Route/>
             <Route/>
         </Routes>

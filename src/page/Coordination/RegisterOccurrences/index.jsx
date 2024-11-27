@@ -1,5 +1,8 @@
 
 import { Route, Routes, useNavigate } from "react-router-dom";
+
+import "./style/RegisterOccurences.scss";
+
 import Button from "../../../components/Button";
 
 const RegisterOccurrencesPage = () => {
@@ -7,7 +10,7 @@ const RegisterOccurrencesPage = () => {
 
     return(
         <div className="main">
-            <div className="main-menu">
+            <div className="main-menu" id="register-occurences">
                 <Button
                     text={"Registrar"}
                 />      

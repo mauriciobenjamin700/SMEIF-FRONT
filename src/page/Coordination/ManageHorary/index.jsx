@@ -1,5 +1,8 @@
 
 import { Route, Routes, useNavigate } from "react-router-dom";
+
+import "./style/ManageHorary.scss";
+
 import Button from "../../../components/Button";
 
 const ManageHoraryPage = () => {
@@ -7,7 +10,7 @@ const ManageHoraryPage = () => {
 
     return(
         <div className="main">
-            <div className="main-menu">
+            <div className="main-menu" id="manage-horary">
             <Button
                 text={"Registrar Horários"}
             />      

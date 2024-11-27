@@ -1,5 +1,7 @@
 import {Route, Routes, useNavigate } from "react-router-dom";
 
+import "./style/ManageRegistration.scss";
+
 import Button from "../../../components/Button"
 import SearchRegister from "./SearchRegister";
 
@@ -9,7 +11,7 @@ const RegisterMenu = () => {
 
     return (
         <div className="main">
-            <div className="main-menu">
+            <div className="main-menu" id="management">
                 <Button text={"Pais/Responsáveis"} onFunction={() => navigate("gerencia_pais")} />
                 <Button text={"Alunos"} onFunction={() => navigate("gerencia_alunos")}/>
                 <Button text={"Professores"} onFunction={() => navigate("gerencia_professores")} />

@@ -4,6 +4,7 @@ import {Route, Routes, useNavigate } from "react-router-dom";
 import Input from "../../../components/Input/index.jsx";
 import InputSelect from "../../../components/InputSelect/index.jsx"
 import Button from "../../../components/Button/index.jsx";
+import SendCommunicationPage from "./SendCommunication.jsx";
 
 const SearchRegisterPage = ({userType}) => {
     const navigate = useNavigate(); 
@@ -33,6 +34,7 @@ const SearchRegisterPage = ({userType}) => {
                 <Button
                     text={"Buscar"}
                     onFunction={() => {
+                        console.log(userType)
                         switch (userType) {
                             case 1:
                                 navigate("enviar_comunicado_para_pai")
@@ -53,8 +55,8 @@ const SearchRegister = ({userType}) => {
         <div>
             <Routes>
                 <Route path="/" element={<SearchRegisterPage userType={userType}/>} />
-                <Route path="enviar_comunicado_para_pai/" element={<SearchRegisterPage/>} />
-                <Route path="enviar_comunicado_para_turma/" element={<SearchRegisterPage/>} />
+                <Route path="enviar_comunicado_para_pai/*" element={<SendCommunicationPage userType={userType}/>} />
+                <Route path="enviar_comunicado_para_turma/*" element={<SendCommunicationPage userType={userType}/>} />
             </Routes>
         </div>
     );

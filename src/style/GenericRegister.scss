@@ -127,6 +127,7 @@
             font-family: 'Inter';
             max-height: 39.43px;
             font-size: 1.2rem;
+            background-color: color.$light_yellow;
 
             option{
                 margin-top: 5px;
@@ -201,6 +202,9 @@
             font-family: 'Inter';
             max-height: 39.43px;
         }
+        .input:focus{
+            outline: none;
+        }
 
         select{
             min-width: 100%;
@@ -213,6 +217,10 @@
                 font-size: small;
                 padding: 5px;
             }
+        }
+
+        select:focus{
+            outline: none;
         }
 
         form{
@@ -237,7 +245,15 @@
                 font-size: 13px;
                 white-space: nowrap;
                 border-radius: 12.32px;
+                transition: filter 0.3s ease;
+            }
 
+            .button:hover{
+                filter: saturate(1.5);
+            }
+
+            .button:focus{
+                outline: none;
             }
         }
 
@@ -480,11 +496,11 @@
                 border-radius: 12.32px;
                 padding: 0px 5px;
                 text-align: center;
-
+                transition: filter 0.3s ease;
             }
 
             .button:hover{
-                filter: saturate(2);
+                filter: saturate(1.5);
             }
         }
 

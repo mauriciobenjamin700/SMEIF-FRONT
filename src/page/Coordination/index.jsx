@@ -14,7 +14,6 @@ const Menu = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="div-main">
       <div className="box-menu">
         <ImageButton
           path={"src/assets/cadastrar_pessoas.png"}
@@ -47,7 +46,6 @@ const Menu = () => {
           onFunction={() => navigate("gerenciar_horarios")}
         />
       </div>
-    </div>
   );
 };
 

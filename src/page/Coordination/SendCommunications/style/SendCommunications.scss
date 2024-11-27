@@ -1,0 +1,29 @@
+@use "../../../../style/breakpoints" as *;
+
+@media only screen and ($very-small) {
+    
+}
+
+@media only screen and ($small) {
+    
+
+    input[type=file]{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    input[type=file]:hover{
+        cursor: pointer;
+    }
+}
+
+@media only screen and ($medium) {
+}
+
+@media only screen and ($large) {
+}
+
+@media only screen and ($extra-large) {
+}
+
+@media only screen and ($extra-extra-large) {    
+}

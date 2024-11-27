@@ -1,0 +1,25 @@
+@use "../../../../style/breakpoints" as *;
+
+@media only screen and ($very-small) {
+    #manage-horary{
+        margin-top: 25%;
+    }
+}
+
+@media only screen and ($small) {
+    #manage-horary{
+        margin-top: 40%;
+    }
+}
+
+@media only screen and ($medium) {
+}
+
+@media only screen and ($large) {
+}
+
+@media only screen and ($extra-large) {
+}
+
+@media only screen and ($extra-extra-large) {    
+}
