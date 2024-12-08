@@ -7,6 +7,34 @@
 }
 
 @media only screen and ($small) {
+    .checklist {
+        display: flex;
+        flex-direction: column; /* Mantém os dias empilhados verticalmente */
+        gap: 1rem; /* Espaçamento entre cada linha */
+    }
+    
+    .checklist-row {
+        display: flex; /* Alinha `InputCheck` e `Input` lado a lado */
+        align-items: center; /* Centraliza os itens verticalmente */
+        gap: 1rem; /* Espaçamento entre o checkbox e o input */
+        .input{
+            min-width: 50px;
+        }
+    }
+    
+    .checklist-row input[type="text"] {
+        flex: 1; /* Faz o campo de texto ocupar todo o espaço disponível */
+    }
+    
+    label {
+        margin-left: 0.5rem; /* Espaço entre o checkbox e o texto */
+    }
+    
+    
+    
+    
+    
+
     #manage-horary{
         margin-top: 40%;
     }

@@ -38,7 +38,7 @@ const ParentRegisterPage = () => {
                 <h5>Dados Pessoais:</h5>
                 <hr />
                 <Input
-                    text="Nome completo: *"
+                    text="Nome completo: "
                     place="Digite seu nome completo"
                     onChange={(value) => handleInputChange('name', value)}
                 />
@@ -50,7 +50,7 @@ const ParentRegisterPage = () => {
             
                 />
                 <Input
-                    text="CPF: *"
+                    text="CPF:"
                     place="Digite seu CPF"
                     onChange={(value) => handleInputChange('cpf', value)}
                 />
@@ -65,12 +65,12 @@ const ParentRegisterPage = () => {
                 <h5>Informações de contato:</h5>
                 <hr />
                 <Input
-                    text="Telefone(fixo ou celular): *"
+                    text="Telefone(fixo ou celular): "
                     place="Digite seu telefone"
                     onChange={(value) => handleInputChange('phone', value)}
                 />
                 <Input
-                    text="Email: *"
+                    text="Email: "
                     place="Digite seu email"
                     type={"email"}
                     onChange={(value) => handleInputChange('email', value)}
@@ -107,6 +107,17 @@ const ParentRegisterPage = () => {
                     text="Complemento:"
                     place="Digite o complemento (opcional)"
                     onChange={(value) => handleInputChange('complement', value)}
+                />
+
+                <h5>Senha:</h5>
+                <hr />
+                <Input
+                    text={"Senha: "}
+                    place={"Crie uma senha"}
+                />
+                <Input
+                    text={"Confirmar Senha: "}
+                    place={"Insira a mesma senha"}
                 />
                 <div className="botoes-de-lado">
                     <Button text={"Cancelar"} color={"#C97414"} onFunction={() => navigate("/Coordenacao/cadastro")}/>

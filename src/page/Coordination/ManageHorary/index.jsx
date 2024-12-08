@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import "./style/ManageHorary.scss";
 
 import Button from "../../../components/Button";
+import RegisterHoraryPage from "./RegisterHorary";
 
 const ManageHoraryPage = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const ManageHoraryPage = () => {
             <div className="main-menu" id="manage-horary">
             <Button
                 text={"Registrar Horários"}
+                onFunction={() => navigate("registrar_horarios")}
             />      
             <Button
                 text={"Visualizar"}
@@ -33,7 +35,7 @@ const ManageHorary = () => {
     return(
         <Routes>
             <Route path="/" element={<ManageHoraryPage/>}/>
-            <Route/>
+            <Route path="registrar_horarios" element={<RegisterHoraryPage/>} />
             <Route/>
             <Route/>
             <Route/>

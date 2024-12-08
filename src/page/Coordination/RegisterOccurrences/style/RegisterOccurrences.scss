@@ -10,6 +10,18 @@
     #register-occurrences{
         margin-top: 40%;
     }
+
+    .mensagem{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 10px;
+        label{
+            font-size: 1.1rem;
+
+        }
+
+    }
 }
 
 @media only screen and ($medium) {

@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import "./style/RegisterOccurrences.scss";
 
 import Button from "../../../components/Button";
+import SearchStudent from "./SearchStudent";
 
 const RegisterOccurrencesPage = () => {
     const navigate = useNavigate();
@@ -13,9 +14,11 @@ const RegisterOccurrencesPage = () => {
             <div className="main-menu" id="register-occurrences">
                 <Button
                     text={"Registrar"}
+                    onFunction={() => navigate("buscar_aluno")}
                 />      
                 <Button
                     text={"Visualizar"}
+                    onFunction={() => navigate("visualizar_ocorrencias")}
                 />
                 <Button
                     text={"Voltar"}
@@ -33,8 +36,8 @@ const RegisterOccurrences = () => {
     return(
         <Routes>
             <Route path="/" element={<RegisterOccurrencesPage/>}/>
-            <Route/>
-            <Route/>
+            <Route path="buscar_aluno/*" element={<SearchStudent/>}/>
+            <Route path="visualizar_ocorrencias/*" element={<></>}/>
         </Routes>
     );
 };
