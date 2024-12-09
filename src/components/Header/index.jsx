@@ -29,7 +29,7 @@ const Header = () => {
                         setHeaderTitle("Cadastro de Pais/Responsáveis");
                         
                         break;
-                    case("/Coordenacao/cadastro/StudentRegister"):
+                    case("/Coordenacao/cadastro/cadastro_aluno"):
                         setHeaderTitle("Cadastro de Alunos");
                         
                         break;

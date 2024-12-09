@@ -10,7 +10,7 @@ import olho_aberto from "../../assets/olho_aberto.png";
 import olho_fechado from "../../assets/olho_fechado.png";
 import Button from "../../components/Button/index.jsx";
 import Input from "../../components/Input/index.jsx";
-
+import API_URL from "../../constants/api.ts"
 
 import UserRoles from "../../constants/users.ts";
 
@@ -22,7 +22,7 @@ const Frame1 = ({ onFunction }) => {
       <div id="lista_botoes">
         <Button text={"Pais ou Responsavel"} onFunction={() => onFunction(1, UserRoles.Pais)} />
         <Button text={"Professores"} onFunction={() => onFunction(1, UserRoles.Professores)} />
-        <Button text={"Coordenação"} onFunction={() => onFunction(1, UserRoles.Coordination)} />
+        <Button text={"Coordenação"} onFunction={() => onFunction(1, UserRoles.Coordenacao)} />
       </div>
     </div>
   );
@@ -37,15 +37,16 @@ const Frame2 = ({ onFunction, level }) => {
   
 
   const login = () =>{
-    const api_url = `${import.meta.env.VITE_BASE_URL_API}user/login`
+    
+    const api_url = `${API_URL}user/login`
     axios.post(api_url,{
       cpf:user,
       password:password
     })
     .then(response => {
-      const decodedData = jwtDecode(response.data);
+      const decodedData = jwtDecode(response.data.token);
       setMessageError("");
-
+      console.log(decodedData.level, level.acessLevel);
       if (decodedData.level == level.acessLevel && level.acessLevel == 3){
         navigate('/Coordenacao')
       }

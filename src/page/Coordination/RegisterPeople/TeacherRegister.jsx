@@ -5,24 +5,29 @@ import Input from "../../../components/Input/index.jsx"
 import InputSelect from "../../../components/InputSelect/index.jsx";
 import "../../../style/GenericRegister.scss";
 import Button from "../../../components/Button/index.jsx";
+import UserRoles from "../../../constants/users.ts";
 
 
 const TeacherRegisterPage = () => {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        name: '',
-        birthDate: '',
-        cpf: '',
-        gender: '',
-        phone: '',
-        email: '',
-        state: '',
-        city: '',
-        neighborhood: '',
-        street: '',
-        number: '',
-        complement: '',
+        name: "",
+        birth_date: "",
+        cpf: "",
+        gender: "",
+        phone: "",
+        email: "",
+        level:UserRoles.Professores,
+        confirmPassword: "",
+        address: {
+            state: "",
+            city: "",
+            neighborhood: "",
+            street: "",
+            house_number: "",
+            complement: "",
+        }
     });
 
     const handleInputChange = (field, value) => {
@@ -38,7 +43,7 @@ const TeacherRegisterPage = () => {
                 <h5>Dados Pessoais:</h5>
                 <hr />
                     <Input
-                        text="Nome completo: *"
+                        text="Nome completo: "
                         place="Digite seu nome completo"
                         onChange={(value) => handleInputChange('name', value)}
                     />
@@ -50,7 +55,7 @@ const TeacherRegisterPage = () => {
                 
                     />
                     <Input
-                        text="CPF: *"
+                        text="CPF: "
                         place="Digite seu CPF"
                         onChange={(value) => handleInputChange('cpf', value)}
                     />
@@ -80,12 +85,12 @@ const TeacherRegisterPage = () => {
                 <h5>Informações de contato:</h5>
                 <hr />
                     <Input
-                        text="Telefone(fixo ou celular): *"
+                        text="Telefone(fixo ou celular): "
                         place="Digite seu telefone"
                         onChange={(value) => handleInputChange('phone', value)}
                     />
                     <Input
-                        text="Email: *"
+                        text="Email: "
                         place="Digite seu email"
                         type={"email"}
                         onChange={(value) => handleInputChange('email', value)}

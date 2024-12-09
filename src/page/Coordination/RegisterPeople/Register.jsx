@@ -15,7 +15,7 @@ const RegisterMenu = () => {
         <div className="main">
             <div className="main-menu" id="register-people">
                 <Button text={"Cadastrar Pais/Responsáveis"} onFunction={() => navigate("cadastro_pais")} />
-                <Button text={"Cadastrar Alunos"} onFunction={() => navigate("StudentRegister")}/>
+                <Button text={"Cadastrar Alunos"} onFunction={() => navigate("cadastro_aluno")}/>
                 <Button text={"Cadastrar Professores"} onFunction={() => navigate("cadastro_professor")} />
                 <Button text={"Voltar"} color={"#E8B931"} onFunction={() => navigate("/Coordenacao")}/>
             </div>
@@ -29,7 +29,7 @@ const RegisterPage = () => {
             <Routes>
                 <Route path="/" element={<RegisterMenu/>} />
                 <Route path="cadastro_pais" element={<ParentRegisterPage/>} />
-                <Route path="StudentRegister" element={<StudentRegisterPage/>} />
+                <Route path="cadastro_aluno" element={<StudentRegisterPage/>} />
                 <Route path="cadastro_professor" element={<TeacherRegisterPage/>} />
             </Routes>
         </div>
