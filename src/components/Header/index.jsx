@@ -40,7 +40,6 @@ const Header = () => {
                 }
             }
             else if(location.pathname.startsWith("/Coordenacao/gerenciar_turmas")){
-                console.log("aqui")
                 switch(location.pathname){
                     case("/Coordenacao/gerenciar_turmas"):
                         setHeaderTitle("Gerenciamento de Turmas");
@@ -49,7 +48,6 @@ const Header = () => {
                 }
             }
             else if(location.pathname.startsWith("/Coordenacao/gerenciar_horarios")){
-                console.log("aqui")
                 switch(location.pathname){
                     case("/Coordenacao/gerenciar_horarios"):
                         setHeaderTitle("Gerenciar Horários");
@@ -58,7 +56,6 @@ const Header = () => {
                 }
             }
             else if(location.pathname.startsWith("/Coordenacao/gerencia")){
-                console.log("aqui")
                 switch(location.pathname){
                     case("/Coordenacao/gerencia"):
                         setHeaderTitle("Gerenciar Cadastros");

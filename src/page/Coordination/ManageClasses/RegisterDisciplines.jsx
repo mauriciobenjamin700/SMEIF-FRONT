@@ -1,22 +1,44 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Input from "../../../components/Input/index.jsx"
 import InputSelect from "../../../components/InputSelect/index.jsx";
 import "../../../style/GenericRegister.scss";
 import Button from "../../../components/Button/index.jsx";
-
+import Modal from "../../../components/Modal/index.jsx";
+import API_URL from "../../../constants/api.ts";
+import { formatAPIResponse } from "../../../services/requests/base.ts";
 
 const RegisterDisciplinesPage = () => {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        teaching: '',
-        year: '',
-        class: '',
-        shift: '',
-        capacity: '',
+        name: '',
     });
+
+    const registerDiscipline = () => {
+        axios.post(`${API_URL}disciplines/add`,formData)
+        .then((response) => {
+            setModalText(formatAPIResponse(response.request.response))
+            setSucess(true)
+            openModal()
+        })
+        .catch((err) => {
+            console.log(err.request)
+            setModalText(formatAPIResponse(err.request.response))
+            openModal()
+        })
+    }
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalText, setModalText] = useState("")
+    const [sucess, setSucess] = useState(false)
+
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
 
     const handleInputChange = (field, value) => {
         setFormData((prevData) => ({
@@ -27,13 +49,33 @@ const RegisterDisciplinesPage = () => {
 
     return(
             <div className="main">
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                    {(sucess && <>
+                        <h2>Cadastro realizado com sucesso!</h2>
+                        <p>{modalText}</p>
+                        <Button 
+                            onFunction={() => navigate("/Coordenacao/gerenciar_turmas")}
+                            text={"Fechar"}
+                        />
+                    
+                    </>)}
+                    {(!sucess && <>
+                        <h2>Erro ao realizar cadastro </h2>
+                        <p>{modalText}</p>
+                        <Button 
+                            onFunction={() => closeModal()}
+                            text={"Fechar"}
+                        />
+                    </>)
+                    }
+                </Modal>
             <form action="" method="get">
                 <h5>Dados Acadêmicos:</h5>
                 <hr />                
                 <Input 
                     text={"Nome da Disciplina:"}
                     place={"Insira o nome da disciplina"}
-                    onChange={(value) => handleInputChange('teaching', value)}
+                    onChange={(value) => handleInputChange('name', value)}
                 />
                 <InputSelect 
                     text={"Tipo de Ensino:"}
@@ -56,7 +98,7 @@ const RegisterDisciplinesPage = () => {
                 
                 <div className="botoes-de-lado">
                     <Button text={"Cancelar"} color={"#C97414"} onFunction={() => navigate("/Coordenacao/gerenciar_turmas")}/>
-                    <Button text={"Salvar Informações"} color={"#14AE5C"} />
+                    <Button text={"Salvar Informações"} color={"#14AE5C"} onFunction={() => registerDiscipline()} />
                 </div>
             </form>
         </div>

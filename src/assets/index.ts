@@ -10,6 +10,7 @@ import login_image_2 from "./login_image_2.png"
 import olho_aberto from "./olho_aberto.png"
 import olho_fechado from "./olho_fechado.png"
 import reunioes from "./reunioes.png"
+import tres_pontos from "./tres_pontos.png"
 
 
 const IMAGES = {
@@ -23,7 +24,8 @@ const IMAGES = {
     login_image_2,
     olho_aberto,
     olho_fechado,
-    reunioes
+    reunioes,
+    tres_pontos
 }
 
 export default IMAGES;

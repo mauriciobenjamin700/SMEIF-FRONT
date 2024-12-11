@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../../../constants/users.ts"
+import API_URL from "../../../constants/api.ts"
 
 import Input from "../../../components/Input/index.jsx"
 import InputSelect from "../../../components/InputSelect/index.jsx";
@@ -16,11 +16,11 @@ const RegisterNewClassPage = () => {
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        education_level: '',
-        name: '',
-        section: '',
-        shift: '',
-        max_students: '',
+        education_level: "",
+        name: "",
+        section: "",
+        shift: "",
+        max_students: "",
     });
 
     const registerClass = () => {
@@ -31,6 +31,7 @@ const RegisterNewClassPage = () => {
             openModal()
         })
         .catch((err) => {
+            console.log(err.request)
             setModalText(formatAPIResponse(err.request.response))
             openModal()
         })
@@ -58,7 +59,7 @@ const RegisterNewClassPage = () => {
                         <h2>Cadastro realizado com sucesso!</h2>
                         <p>{modalText}</p>
                         <Button 
-                            onFunction={() => navigate("/Coordenacao/cadastro")}
+                            onFunction={() => navigate("/Coordenacao/gerenciar_turmas")}
                             text={"Fechar"}
                         />
                     
@@ -78,8 +79,8 @@ const RegisterNewClassPage = () => {
                 <hr />                
                 <InputSelect 
                     text={"Tipo de Ensino:"}
-                    place={"ex: Ensino Infantil"}
-                    options={["Ensino Infantil"]}
+                    place={"ex:Fundamental"}
+                    options={["Fundamental"]}
                     onChange={(value) => handleInputChange('education_level', value)}
                 />
                 <InputSelect 
@@ -91,7 +92,7 @@ const RegisterNewClassPage = () => {
                 <InputSelect 
                     text={"Turma/Classe:"}
                     place={'ex: "A"'}
-                    options={[]}
+                    options={["A"]}
                     onChange={(value) => handleInputChange('section', value)}
                 />
                 <InputSelect 
@@ -103,7 +104,7 @@ const RegisterNewClassPage = () => {
                 <Input
                     text={"Capacidade Máxima:"}
                     place={"Informe a capacidade máxima da turma"}
-                    onChange={(value) => handleInputChange('max_students', value)}
+                    onChange={(value) => handleInputChange('max_students', parseInt(value))}
                 />
                 
                 

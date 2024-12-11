@@ -1,0 +1,96 @@
+.table-container {
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  display: flex;
+  width: 100%; /* Ocupar toda a largura disponível */
+  overflow: visible; /* Permitir rolagem horizontal */
+}
+
+.main-container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-container {
+  width: 100%; /* Ocupar toda a largura disponível */
+  text-align: center;
+  margin-bottom: 20px; /* Espaço entre título e tabela */
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+
+.custom-table {
+  width: 100%; /* Tabela ocupa todo o espaço disponível */
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed; /* Distribuir as colunas uniformemente */
+
+  th,
+  td {
+    padding: 10px;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+  }
+
+  th {
+    background-color: #388e3c;
+    color: white;
+  }
+
+  td {
+    border: 1px solid #ddd;
+    position: relative; /* Contêiner pai para dropdown */
+
+    .buttonImage{
+      button{
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Alinha o dropdown abaixo do botão */
+    left: 50%; /* Centraliza horizontalmente em relação ao botão */
+    transform: translateX(-50%); /* Ajuste fino para alinhamento */
+    background-color: #f5deb3; /* Fundo do dropdown */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 10; /* Garantir que esteja acima de outros elementos */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionar uma sombra leve */
+  }
+
+  .dropdown-menu button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-menu button:hover {
+    background-color: #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+}
