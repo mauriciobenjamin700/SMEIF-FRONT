@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "../../../style/GenericRegister.scss";
 import "./style/GenericManagement.scss";
@@ -11,19 +11,29 @@ import Button from "../../../components/Button/index.jsx";
 const   ParentManagementPage = () => {
     const navigate = useNavigate()
 
+    const location = useLocation()
+
+    const data = location.state || []
+
+    const formatDateToInput = (date) => {
+        if (!date) return ""; // Retorna vazio caso a data seja nula
+        const [day, month, year] = date.split("/"); // Divide o formato BR
+        return `${year}-${month}-${day}`; // Reorganiza para o formato yyyy-MM-dd
+    };
+
     const [formData, setFormData] = useState({
-        name: '',
-        birthDate: '',
-        cpf: '',
-        gender: '',
-        phone: '',
-        email: '',
-        state: '',
-        city: '',
-        neighborhood: '',
-        street: '',
-        number: '',
-        complement: '',
+        name: data.name,
+        birth_date: data.birth_date,
+        cpf: data.cpf,
+        gender: data.gender,
+        phone: data.phone,
+        email: data.email,
+        state: data.state,
+        city: data.city,
+        neighborhood: data.neighborhood,
+        street: data.street,
+        house_number: data.house_number,
+        complement: data.complement,
     });
 
     const handleInputChange = (field, value) => {
@@ -40,25 +50,25 @@ const   ParentManagementPage = () => {
                 <hr />
                 <Input
                     text="Nome completo: *"
-                    place="Digite seu nome completo"
+                    place={data.name}
                     onChange={(value) => handleInputChange('name', value)}
                 />
                 <Input
                     type={"date"}
                     text="Data de nascimento:"
-                    place="DD/MM/AAAA"
-                    onChange={(value) => handleInputChange('birthDate', value)}
+                    value={formatDateToInput(data.birth_date)}
+                    onChange={(value) => handleInputChange('birth_date', value)}
             
                 />
                 <Input
                     text="CPF: *"
-                    place="Digite seu CPF"
+                    place={data.cpf}
                     onChange={(value) => handleInputChange('cpf', value)}
                 />
                 
                 <InputSelect 
                     text={"Sexo:"}
-                    place={"Selecione o sexo"}
+                    place={data.gender}
                     options={["Masculino", "Feminino"]}
                     onChange={(value) => handleInputChange('gender', value)}
                 />
@@ -67,12 +77,12 @@ const   ParentManagementPage = () => {
                 <hr />
                 <Input
                     text="Telefone(fixo ou celular): *"
-                    place="Digite seu telefone"
+                    place={data.phone}
                     onChange={(value) => handleInputChange('phone', value)}
                 />
                 <Input
                     text="Email: *"
-                    place="Digite seu email"
+                    place={data.email}
                     type={"email"}
                     onChange={(value) => handleInputChange('email', value)}
                 />
@@ -81,32 +91,32 @@ const   ParentManagementPage = () => {
                 <hr />
                 <Input
                     text="Estado:"
-                    place="Digite seu estado"
+                    place={data.state}
                     onChange={(value) => handleInputChange('state', value)}
                 />
                 <Input
                     text="Cidade:"
-                    place="Digite sua cidade"
+                    place={data.city}
                     onChange={(value) => handleInputChange('city', value)}
                 />
                 <Input
                     text="Bairro:"
-                    place="Digite seu bairro"
+                    place={data.neighborhood}
                     onChange={(value) => handleInputChange('neighborhood', value)}
                 />
                 <Input
                     text="Rua:"
-                    place="Digite sua rua"
+                    place={data.street}
                     onChange={(value) => handleInputChange('street', value)}
                 />
                 <Input
                     text="Número:"
-                    place="Digite o número"
-                    onChange={(value) => handleInputChange('number', value)}
+                    place={data.house_number}
+                    onChange={(value) => handleInputChange('house_number', value)}
                 />
                 <Input
                     text="Complemento:"
-                    place="Digite o complemento (opcional)"
+                    place={data.complement}
                     onChange={(value) => handleInputChange('complement', value)}
                 />
                 <div className="botoes-de-lado">

@@ -49,6 +49,7 @@
         margin-bottom: 30px;
         position: sticky;
         top: 0;
+        z-index: 1;
 
         display:flex;
         flex-direction: row;
@@ -75,7 +76,57 @@
             margin-left: 10px;
             width: auto;
             height: 70%;
+        }
 
+        .dropdown {
+            position: absolute;
+            top: 80%; /* Alinha o dropdown abaixo do botão */
+            left: 90%; /* Centraliza horizontalmente em relação ao botão */
+            background-color: #A7F2A5; /* Fundo do dropdown */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            z-index: 10; /* Garantir que esteja acima de outros elementos */
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionar uma sombra leve */
+            min-height: 200px;
+
+            .button{
+                border-color: transparent;
+                background-color: #A7F2A5;
+                transition: filter 0.3s ease;
+            }
+
+            .button:hover{
+                filter: contrast(1.4);
+            }
+            
+          }
+
+        .buttonImage{
+            width: 10%;
+            height:100%;
+            button{
+                background-color: transparent;
+                border-color: transparent;
+                height: 100%;
+                transition: filter 0.3s ease;
+            }
+
+            button:focus{
+                outline: none;
+            }
+
+
+
+            img{
+                width: auto;
+                height: 70%;
+                background-color: transparent;
+            }
         }
     }
 }

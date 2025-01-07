@@ -5,13 +5,26 @@ import "./style/SearchRegister.scss";
 import Input from "../../../components/Input/index.jsx";
 import Button from "../../../components/Button/index.jsx";
 import ParentManagementPage from "./ParentsManagement.jsx";
-import StudentRegisterPage from "../../Coordination/RegisterPeople/StudentRegister.jsx";
-import TeacherRegisterPage from "../../Coordination/RegisterPeople/TeacherRegister.jsx";
 import StudentManagementPage from "./StudentManagement.jsx";
 import TeacherManagementPage from "./TeacherManagement.jsx";
+import SearchParent from "./SearchParent.jsx";
+import SearchStudent from "./SearchStudent.jsx";
+import SearchTeacher from "./SearchTeacher.jsx";
 
 const SearchRegisterPage = ({userType}) => {
     const navigate = useNavigate(); 
+    console.log(userType);
+
+    
+    const navigateToSearch = () => {
+        if (userType === 1){
+            navigate("buscar_pai")
+        } else if (userType === 2){
+            navigate("buscar_aluno")
+        }else{
+            navigate("buscar_professor")
+        }
+    }
 
     return(
         <div className="main">
@@ -45,7 +58,7 @@ const SearchRegisterPage = ({userType}) => {
             </div>
             <Button
                 text={"Visualizar Todos"}
-
+                onFunction={() => navigateToSearch()} 
             />
         
         </div>
@@ -60,6 +73,9 @@ const SearchRegister = ({userType}) => {
                 <Route path="modificar_pai/" element={<ParentManagementPage/>} />
                 <Route path="modificar_aluno/" element={<StudentManagementPage/>} />
                 <Route path="modificar_professor/" element={<TeacherManagementPage/>} />
+                <Route path="buscar_pai/*" element={<SearchParent/>} />
+                <Route path="buscar_aluno/*" element={<SearchStudent/>} />
+                <Route path="buscar_professor/*" element={<SearchTeacher/>} />
             </Routes>
         </div>
     );

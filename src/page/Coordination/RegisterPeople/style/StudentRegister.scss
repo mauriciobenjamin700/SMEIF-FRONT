@@ -3,7 +3,8 @@
 @media only screen and ($very-small) {
     .responsible-field{
         margin-bottom: 10px;
-
+        display: flex;
+        flex-direction: column;
         button{
             margin-top: 10px;
         }
@@ -15,7 +16,8 @@
 @media only screen and ($small) {
     .responsible-field{
         margin-bottom: 10px;
-
+        display: flex;
+        flex-direction: column;
         button{
             margin-top: 10px;
         }

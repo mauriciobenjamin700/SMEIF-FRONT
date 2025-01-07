@@ -1,26 +1,47 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import image from  "../../assets/header_image.png";
 import "./header.scss";
+
+import IMAGES from "../../assets";
+import ImageButton from "../ImagemButton";
+import Button from "../Button";
+import useCheckAccessLevel from "../../services/utilities/checkAcessLevel.js"
 
 const Header = () => {
     const [ headerTitle, setHeaderTitle ] = useState("");
     const [ imageHeader, setImageHeader ] = useState(false);
-    const location = useLocation();
+    const react_location = useLocation();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const deleteLevel = () => {
+        localStorage.removeItem('level')
+        setIsDropdownOpen(false)
+        navigate('/')
+        location.reload()
+        
+    }
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
 
     useEffect(() => {
-        if(location.pathname !== "/"){
+        useCheckAccessLevel(navigate, react_location);
+
+        if(react_location.pathname !== "/"){
             setImageHeader(true);
         }
-        if(location.pathname === "/"){
+        if(react_location.pathname === "/"){
             setHeaderTitle("");
-        }else if(location.pathname.startsWith("/Coordenacao")){
-            if(location.pathname === "/Coordenacao"){
+        }else if(react_location.pathname.startsWith("/Coordenacao")){
+            if(react_location.pathname === "/Coordenacao"){
                 setHeaderTitle("Menu Principal");
                 
             }
-            else if(location.pathname.startsWith("/Coordenacao/cadastro")){
-                switch(location.pathname){
+            else if(react_location.pathname.startsWith("/Coordenacao/cadastro")){
+                switch(react_location.pathname){
                     case("/Coordenacao/cadastro"):
                         setHeaderTitle("Cadastro de Pessoas");
                         
@@ -39,24 +60,24 @@ const Header = () => {
                         break;
                 }
             }
-            else if(location.pathname.startsWith("/Coordenacao/gerenciar_turmas")){
-                switch(location.pathname){
+            else if(react_location.pathname.startsWith("/Coordenacao/gerenciar_turmas")){
+                switch(react_location.pathname){
                     case("/Coordenacao/gerenciar_turmas"):
                         setHeaderTitle("Gerenciamento de Turmas");
                         
                         break;
                 }
             }
-            else if(location.pathname.startsWith("/Coordenacao/gerenciar_horarios")){
-                switch(location.pathname){
+            else if(react_location.pathname.startsWith("/Coordenacao/gerenciar_horarios")){
+                switch(react_location.pathname){
                     case("/Coordenacao/gerenciar_horarios"):
                         setHeaderTitle("Gerenciar Horários");
                         
                         break;
                 }
             }
-            else if(location.pathname.startsWith("/Coordenacao/gerencia")){
-                switch(location.pathname){
+            else if(react_location.pathname.startsWith("/Coordenacao/gerencia")){
+                switch(react_location.pathname){
                     case("/Coordenacao/gerencia"):
                         setHeaderTitle("Gerenciar Cadastros");
                         
@@ -75,8 +96,8 @@ const Header = () => {
                         break;
                 }
             }
-            else if(location.pathname.startsWith("/Coordenacao/enviar_comunicado")){
-                switch(location.pathname){
+            else if(react_location.pathname.startsWith("/Coordenacao/enviar_comunicado")){
+                switch(react_location.pathname){
                     case("/Coordenacao/enviar_comunicado"):
                         setHeaderTitle("Envio de Comunicado");
                         break;
@@ -95,8 +116,8 @@ const Header = () => {
                 }
             
             }
-            else if(location.pathname.startsWith("/Coordenacao/registrar_ocorrencias")){
-                switch(location.pathname){
+            else if(react_location.pathname.startsWith("/Coordenacao/registrar_ocorrencias")){
+                switch(react_location.pathname){
                     case("/Coordenacao/registrar_ocorrencias"):
                         setHeaderTitle("Registro de Ocorrências e Advertências");
                         
@@ -104,16 +125,49 @@ const Header = () => {
                 }
             
             }
+        }else if(react_location.pathname.startsWith("/Professor")){
+            if(react_location.pathname === "/Professor"){
+                setHeaderTitle("Menu Principal");
+                
+            }
+        }else if(react_location.pathname.startsWith("/Responsavel")){
+            if(react_location.pathname === "/Responsavel"){
+                setHeaderTitle("Menu Principal");
+                
+            }
+        }else if(react_location.pathname.startsWith("/error")){
+            setHeaderTitle("Menu Principal")
         }
 
         
-    })
+    },[navigate, react_location, headerTitle])
 
     if(imageHeader){
         return(
             <header className="header">
                 <img src={image} alt="" />
                 <h3>{headerTitle}</h3>
+                <ImageButton
+                    onFunction={() => toggleDropdown()}
+                    path={IMAGES.menu}
+                />
+                {isDropdownOpen && (
+                <div className="dropdown">
+                    <Button
+                        text={"Perfil"}
+                        
+                    />
+                    <Button
+                        text={"Alterar Senha"}
+                        
+                    />
+                    <Button
+                        text={"Sair"}
+                        onFunction={() => deleteLevel()}
+                    
+                    />
+                </div>
+            )}
             </header>
         );
     }

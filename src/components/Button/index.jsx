@@ -1,7 +1,7 @@
 const Button = ({text,color,onFunction}) => {
     if (color == null){
         return (
-            <button className="button" onClick={onFunction}>
+            <button className="button" type="button" onClick={onFunction}>
                 {text}
             </button>
         );

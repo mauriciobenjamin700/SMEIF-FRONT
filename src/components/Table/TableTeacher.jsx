@@ -8,8 +8,10 @@ import Button from '../Button/index.jsx';
 import API_URL from '../../constants/api.ts';
 import Modal from '../Modal/index.jsx';
 
+import { formatCPFResponse } from '../../services/requests/base.ts';
 
-const TableClass = ({ tittle, data, functions, columns = [] }) => {
+
+const TableTeacher = ({ tittle, data, functions, columns = [] }) => {
     const [activeDropDown, setActiveDropDown] = useState(null);
     
     const [deleteModal,setDeleteModal] = useState("");
@@ -18,10 +20,10 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     
-    const deleteClass = () => {
-        axios.delete(`${API_URL}classes/delete`, {
+    const deleteTeacher = () => {
+        axios.delete(`${API_URL}user/delete`, {
             params: {
-                class_id: String(deleteModal)
+                user_id: formatCPFResponse(String(deleteModal))
             }
         })
         .then((response) => {
@@ -41,13 +43,13 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
       <div className="main-container">
         <Modal isOpen={isModalOpen} onClose={closeModal}>
             <>
-                <h2>Tem certeza que deseja remover essa turma?</h2>
+                <h2>Tem certeza que deseja remover esse professor?</h2>
                 <Button 
                     onFunction={() => closeModal()}
                     text={"Não"}
                 />
                 <Button 
-                    onFunction={() => {deleteClass()}}
+                    onFunction={() => {deleteTeacher()}}
                     color={"red"}
                     text={"Sim"}
                     
@@ -66,15 +68,18 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
               </tr>
             </thead>
             <tbody>
+                    
               {Array.isArray(data) &&
-                data.map((info, index) => (
+                data.map((info, index) => (  
                   <tr key={index}>
                     <td>
                       <div>
-                        <strong>{info.class_info}</strong>
+                        <strong>{info.user.name}</strong>
                       </div>
                     </td>
-                    <td>{info.shift}</td>
+                    <td>{info.disciplines?.map(discipline => discipline.name)}</td>
+                    <td>{info.classes?.map(discipline => discipline.class_info)}</td>
+                    <td>{info.user.phone}</td>
                     <td>
                       <ImageButton
                         path={IMAGES.tres_pontos}
@@ -84,11 +89,11 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
                         <div className="dropdown-menu">
                           <Button
                             text="Editar"
-                            onFunction={() => functions[0]("editar_turma/",{state: info})}
+                            onFunction={() => functions[0]("editar_professor/",{state: info})}
                           />
                           <Button
                             text="Excluir"
-                            onFunction={() => {setDeleteModal(info.id), openModal()}}
+                            onFunction={() => {setDeleteModal(info.user.cpf), openModal()}}
                           />
 
                         </div>
@@ -104,4 +109,4 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
   };
   
 
-export default TableClass;
+export default TableTeacher;

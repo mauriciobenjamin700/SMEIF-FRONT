@@ -9,7 +9,7 @@ import API_URL from '../../constants/api.ts';
 import Modal from '../Modal/index.jsx';
 
 
-const TableClass = ({ tittle, data, functions, columns = [] }) => {
+const TableParent = ({ tittle, data, functions, columns = [] }) => {
     const [activeDropDown, setActiveDropDown] = useState(null);
     
     const [deleteModal,setDeleteModal] = useState("");
@@ -19,9 +19,9 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
     const closeModal = () => setIsModalOpen(false);
     
     const deleteClass = () => {
-        axios.delete(`${API_URL}classes/delete`, {
+        axios.delete(`${API_URL}user/delete`, {
             params: {
-                class_id: String(deleteModal)
+                user_id: String(deleteModal)
             }
         })
         .then((response) => {
@@ -41,7 +41,7 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
       <div className="main-container">
         <Modal isOpen={isModalOpen} onClose={closeModal}>
             <>
-                <h2>Tem certeza que deseja remover essa turma?</h2>
+                <h2>Tem certeza que deseja remover esse responsavel?</h2>
                 <Button 
                     onFunction={() => closeModal()}
                     text={"Não"}
@@ -71,10 +71,12 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
                   <tr key={index}>
                     <td>
                       <div>
-                        <strong>{info.class_info}</strong>
+                        <strong>{info.name}</strong>
                       </div>
                     </td>
-                    <td>{info.shift}</td>
+                    <td>{info.phone}</td>
+                    <td>{info.email}</td>
+                    <td>{info.cpf}</td>
                     <td>
                       <ImageButton
                         path={IMAGES.tres_pontos}
@@ -84,7 +86,7 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
                         <div className="dropdown-menu">
                           <Button
                             text="Editar"
-                            onFunction={() => functions[0]("editar_turma/",{state: info})}
+                            onFunction={() => functions[0]("editar_pai/",{state: info})}
                           />
                           <Button
                             text="Excluir"
@@ -104,4 +106,4 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
   };
   
 
-export default TableClass;
+export default TableParent;

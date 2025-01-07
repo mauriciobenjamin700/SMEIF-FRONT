@@ -9,7 +9,7 @@ import API_URL from '../../constants/api.ts';
 import Modal from '../Modal/index.jsx';
 
 
-const TableClass = ({ tittle, data, functions, columns = [] }) => {
+const TableDisciplines = ({ tittle, data, functions, columns = [] }) => {
     const [activeDropDown, setActiveDropDown] = useState(null);
     
     const [deleteModal,setDeleteModal] = useState("");
@@ -18,10 +18,10 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     
-    const deleteClass = () => {
-        axios.delete(`${API_URL}classes/delete`, {
+    const deleteDisciplines = () => {
+        axios.delete(`${API_URL}disciplines/delete`, {
             params: {
-                class_id: String(deleteModal)
+                discipline_name: String(deleteModal)
             }
         })
         .then((response) => {
@@ -41,13 +41,13 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
       <div className="main-container">
         <Modal isOpen={isModalOpen} onClose={closeModal}>
             <>
-                <h2>Tem certeza que deseja remover essa turma?</h2>
+                <h2>Tem certeza que deseja remover essa disciplina?</h2>
                 <Button 
                     onFunction={() => closeModal()}
                     text={"Não"}
                 />
                 <Button 
-                    onFunction={() => {deleteClass()}}
+                    onFunction={() => {deleteDisciplines()}}
                     color={"red"}
                     text={"Sim"}
                     
@@ -71,10 +71,10 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
                   <tr key={index}>
                     <td>
                       <div>
-                        <strong>{info.class_info}</strong>
+                        <strong>{info.id}</strong>
                       </div>
                     </td>
-                    <td>{info.shift}</td>
+                    <td>{info.name}</td>
                     <td>
                       <ImageButton
                         path={IMAGES.tres_pontos}
@@ -84,11 +84,11 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
                         <div className="dropdown-menu">
                           <Button
                             text="Editar"
-                            onFunction={() => functions[0]("editar_turma/",{state: info})}
+                            onFunction={() => functions[0]("gerenciar_disciplina/",{state: info})}
                           />
                           <Button
                             text="Excluir"
-                            onFunction={() => {setDeleteModal(info.id), openModal()}}
+                            onFunction={() => {setDeleteModal(info.name), openModal()}}
                           />
 
                         </div>
@@ -104,4 +104,4 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
   };
   
 
-export default TableClass;
+export default TableDisciplines;

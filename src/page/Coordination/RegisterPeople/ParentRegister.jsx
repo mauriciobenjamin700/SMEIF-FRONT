@@ -39,7 +39,7 @@ const ParentRegisterPage = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalText, setModalText] = useState("")
-    const [sucess, setSucess] = useState(false)
+    const [success, setsuccess] = useState(false)
 
 
     const openModal = () => setIsModalOpen(true);
@@ -52,7 +52,7 @@ const ParentRegisterPage = () => {
                 .then((response) => {
                     setModalText(formatAPIResponse(response.request.response))
                     openModal()
-                    setSucess(true)
+                    setsuccess(true)
                 })
                 .catch((err) => {
                     const errMsg = formatAPIResponse(err.request.response)
@@ -103,7 +103,7 @@ const ParentRegisterPage = () => {
     return(
             <div className="main">
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-                {(sucess && <>
+                {(success && <>
                     <h2>Cadastro realizado com sucesso!</h2>
                     <p>{modalText}</p>
                     <Button 
@@ -112,7 +112,7 @@ const ParentRegisterPage = () => {
                     />
                 
                 </>)}
-                {(!sucess && <>
+                {(!success && <>
                     <h2>Erro ao realizar cadastro </h2>
                     <p>{modalText}</p>
                     <Button 

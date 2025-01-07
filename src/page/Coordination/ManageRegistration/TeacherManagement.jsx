@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "../../Coordination/RegisterPeople/style/StudentRegister.scss";
 import "../../../style/GenericRegister.scss";
@@ -9,24 +9,67 @@ import Input from "../../../components/Input/index.jsx"
 import InputSelect from "../../../components/InputSelect/index.jsx";
 import Button from "../../../components/Button/index.jsx";
 
+import { dataLocals } from "../../../data/cities.json"
+
 
 const TeacherManagementPage = () => {
     const navigate = useNavigate()
 
+    const location = useLocation()
+    
+    const data = location.state || []
+
+    const formatDateToInput = (date) => {
+        if (!date) return ""; // Retorna vazio caso a data seja nula
+        const [day, month, year] = date.split("/"); // Divide o formato BR
+        return `${year}-${month}-${day}`; // Reorganiza para o formato yyyy-MM-dd
+    };
+
+    const saveChanges = () => {
+        
+        axios.put(
+            `${API_URL}teacher/update`, // URL base
+            formData,                  // Corpo da requisição (data)
+            {                          // Configurações adicionais
+                params: {              // Query Parameters
+                    name: data.name, 
+                },
+            }
+        )
+        .then((response) => {
+            console.log(response);
+            setSucess(true)
+            openModal()
+        })
+        .catch((error) => {
+            console.error(error.response);
+            console.log("deu ruim");
+        });
+    };
+
     const [formData, setFormData] = useState({
-        name: '',
-        birthDate: '',
-        cpf: '',
-        gender: '',
-        phone: '',
-        email: '',
-        state: '',
-        city: '',
-        neighborhood: '',
-        street: '',
-        number: '',
-        complement: '',
+        cpf: data.user.cpf,
+        name: data.user.name,
+        birth_date: data.user.birth_date,
+        gender: data.user.gender,
+        phone: data.user.phone,
+        email: data.user.email,
+        password: "",
+        confirmPassword: "",
+        address: {
+            state: data.user.state,
+            city: data.user.city,
+            neighborhood: data.user.neighborhood,
+            street: data.user.street,
+            house_number: data.user.house_number,
+            complement: data.user.complement,
+        }
+        
     });
+
+    const optionsStates = dataLocals.flatMap((local) => ([
+        local.estado // Nome do estado, por exemplo, "Acre"
+    ]));
 
     const handleInputChange = (field, value) => {
         setFormData((prevData) => ({
@@ -42,19 +85,21 @@ const TeacherManagementPage = () => {
                 <hr />
                     <Input
                         text="Nome completo: *"
-                        place="Digite seu nome completo"
+                        place={data.user.name}
+                        value={data.user.name}
                         onChange={(value) => handleInputChange('name', value)}
                     />
                     <Input
                         type={"date"}
                         text="Data de nascimento:"
-                        place="DD/MM/AAAA"
-                        onChange={(value) => handleInputChange('birthDate', value)}
+                        value={formatDateToInput(data.user.birth_date)}
+                        onChange={(value) => handleInputChange('birth_date', value)}
                 
                     />
                     <Input
                         text="CPF: *"
                         place="Digite seu CPF"
+                        value={data.user.cpf}
                         onChange={(value) => handleInputChange('cpf', value)}
                     />
                     
@@ -62,6 +107,7 @@ const TeacherManagementPage = () => {
                         text={"Sexo:"}
                         place={"Selecione o sexo"}
                         options={["Masculino", "Feminino"]}
+                        value={data.user.gender}
                         onChange={(value) => handleInputChange('gender', value)}
                     />
 
@@ -85,57 +131,55 @@ const TeacherManagementPage = () => {
                     <Input
                         text="Telefone(fixo ou celular): *"
                         place="Digite seu telefone"
+                        value={data.user.phone}
                         onChange={(value) => handleInputChange('phone', value)}
                     />
                     <Input
                         text="Email: *"
                         place="Digite seu email"
                         type={"email"}
+                        value={data.user.email}
                         onChange={(value) => handleInputChange('email', value)}
                     />
 
                 <h5>Endereço:</h5>
                 <hr />
-                <Input
+                <InputSelect
                     text="Estado:"
-                    place="Digite seu estado"
-                    onChange={(value) => handleInputChange('state', value)}
+                    place={data.user.state}
+                    options={optionsStates}
+                    onChange={(value) => handleInputChange('address.state', value)}
                 />
-                <Input
+                {console.log(data.user.state)}
+                <InputSelect
                     text="Cidade:"
-                    place="Digite sua cidade"
-                    onChange={(value) => handleInputChange('city', value)}
+                    place={data.user.city}
+                    options={dataLocals.find((local) => local.estado === formData.address.state)?.cidades || []}
+                    onChange={(value) => handleInputChange('address.city', value)}
                 />
                 <Input
                     text="Bairro:"
                     place="Digite seu bairro"
+                    value={data.user.neighborhood}
                     onChange={(value) => handleInputChange('neighborhood', value)}
                 />
                 <Input
                     text="Rua:"
                     place="Digite sua rua"
+                    value={data.user.street}
                     onChange={(value) => handleInputChange('street', value)}
                 />
                 <Input
                     text="Número:"
                     place="Digite o número"
+                    value={data.user.house_number}
                     onChange={(value) => handleInputChange('number', value)}
                 />
                 <Input
                     text="Complemento:"
                     place="Digite o complemento (opcional)"
+                    value={data.user.complement}
                     onChange={(value) => handleInputChange('complement', value)}
-                />
-
-                <h5>Senha:</h5>
-                <hr />
-                <Input
-                    text={"Senha:"}
-                    place={"Crie uma senha"}
-                />
-                <Input
-                    text={"Confirmar Senha:"}
-                    place={"Insira a mesma senha"}
                 />
 
                 <div className="botoes-de-lado">

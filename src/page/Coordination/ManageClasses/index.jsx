@@ -7,6 +7,7 @@ import RegisterDisciplinesPage from "./RegisterDisciplines";
 import ManageClassPage from "./ManageClass";
 import ManageDisciplinesPage from "./ManageDisciplines";
 import SearchClass from "./SearchClass";
+import SearchDisciplines from "./SearchDisciplines";
 
 const ManageClassesPage = () => {
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ const ManageClasses = () => {
             <Route path="gerenciar_turmas/*" element={<SearchClass/>}/>
             <Route path="cadastrar_nova_turma" element={<RegisterNewClassPage/>}/>
             <Route path="registrar_disciplina" element={<RegisterDisciplinesPage/>}/>
-            <Route path="gerenciar_disciplinas" element={<ManageDisciplinesPage/>} />
+            <Route path="gerenciar_disciplinas/*" element={<SearchDisciplines/>} />
         </Routes>
     );
 };

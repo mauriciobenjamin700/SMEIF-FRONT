@@ -5,20 +5,21 @@ import axios from "axios";
 
 import Input from "../../../components/Input/index.jsx";
 import Button from "../../../components/Button/index.jsx";
-import ManageClassPage from "./ManageClass.jsx";
-import TableClass from "../../../components/Table/TableClass.jsx";
+import ManageDisciplinesPage from "./ManageDisciplines.jsx";
 import API_URL from "../../../constants/api.ts"
+import TableDisciplines from "../../../components/Table/TableDisciplines.jsx";
 
 
-const SearchClassPage = () => {
+const SearchDisciplinesPage = () => {
     const navigate = useNavigate(); 
     const [dataClass, setDataClass] = useState([]); // Estado para armazenar a lista de dados
 
     // Função assíncrona para buscar os dados
     const fetchData = async () => {
         try {
-        const response = await axios.get(`${API_URL}classes/list`);
+        const response = await axios.get(`${API_URL}disciplines/list`);
         setDataClass(response.data); // Atualiza o estado com os dados recebidos
+        console.log(response.data);
         } catch (error) {
         console.error("Erro ao buscar os dados:", error);
         }
@@ -40,8 +41,8 @@ const SearchClassPage = () => {
             />
             </div>
 
-            <TableClass 
-                columns={["Turma", "Turno", "Ação"]}
+            <TableDisciplines
+                columns={["Id","Nome","Ação"]}
                 data={dataClass}
                 functions={[navigate]}
             />
@@ -56,7 +57,7 @@ const SearchClassPage = () => {
                 <Button
                     text={"Buscar"}
                     onFunction={() => {
-                        navigate("")
+                        
                         }
                     }
                 />
@@ -65,16 +66,16 @@ const SearchClassPage = () => {
     );
 }
 
-const SearchClass = () => {
+const SearchDisciplines = () => {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<SearchClassPage/>} />
-                <Route path="gerenciar_turma/" element={<ManageClassPage/>} />
+                <Route path="/" element={<SearchDisciplinesPage/>} />
+                <Route path="gerenciar_disciplina/" element={<ManageDisciplinesPage/>} />
             </Routes>
         </div>
     );
 }
 
 
-export default SearchClass;
+export default SearchDisciplines;

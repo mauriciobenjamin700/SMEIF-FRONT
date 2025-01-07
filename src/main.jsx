@@ -1,33 +1,36 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Login from './page/Login/index.jsx';
 import Coordination from './page/Coordination/index.jsx';
-import Header from './components/Header/index.jsx'
-import Footer from './components/Footer/index.jsx'
-import "./style/main.scss"
+import Login from './page/Login/index.jsx';
+import Header from './components/Header/index.jsx';
+import Footer from './components/Footer/index.jsx';
+import './style/main.scss';
 
 
+const Teacher = React.lazy(() => import('./page/Teacher/index.jsx'));
+const Parent = React.lazy(() => import('./page/Parent/index.jsx'));
 
-const App = () => 
-{
-return(
-<BrowserRouter>
-  <Header/>
-  <Routes>
-    <Route path='/' element={<Login />} />
-    <Route path='/Coordenacao/*' element={<Coordination />} />     
-  </Routes>
-  <Footer />
-</BrowserRouter>
-);
-}
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Coordenacao/*" element={<Coordination />} />
+        <Route path="/Professor/*" element={<Teacher />} />
+        <Route path="/Responsavel/*" element={<Parent />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+};
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    
-    <App />
-    
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
-)
+);

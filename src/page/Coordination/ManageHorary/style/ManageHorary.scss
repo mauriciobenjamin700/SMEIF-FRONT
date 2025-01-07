@@ -15,6 +15,7 @@
     
     .checklist-row {
         display: flex; /* Alinha `InputCheck` e `Input` lado a lado */
+        flex-direction: column;
         align-items: center; /* Centraliza os itens verticalmente */
         gap: 1rem; /* Espaçamento entre o checkbox e o input */
         .input{

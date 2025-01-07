@@ -11,7 +11,12 @@ import olho_aberto from "./olho_aberto.png"
 import olho_fechado from "./olho_fechado.png"
 import reunioes from "./reunioes.png"
 import tres_pontos from "./tres_pontos.png"
-
+import menu from "./menu.png"
+import registro_faltas from "./registro_faltas.png"
+import gerenciar_cadastro from "./gerenciar_cadastro.png"
+import mensagem from "./mensagem.png"
+import monitorar_entrada from "./monitorar_entrada.png"
+import visualizar_notas from "./visualizar_notas.png"
 
 const IMAGES = {
     aviso,
@@ -25,7 +30,13 @@ const IMAGES = {
     olho_aberto,
     olho_fechado,
     reunioes,
-    tres_pontos
+    tres_pontos,
+    menu,
+    registro_faltas,
+    gerenciar_cadastro,
+    mensagem,
+    monitorar_entrada,
+    visualizar_notas
 }
 
 export default IMAGES;

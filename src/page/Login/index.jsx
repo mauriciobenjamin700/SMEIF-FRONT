@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { jwtDecode } from 'jwt-decode';
 
 import "./Login.scss";
@@ -11,6 +11,7 @@ import olho_fechado from "../../assets/olho_fechado.png";
 import Button from "../../components/Button/index.jsx";
 import Input from "../../components/Input/index.jsx";
 import API_URL from "../../constants/api.ts"
+import LoadingOverlay from "../../components/LoadingOverlay/index.jsx";
 
 import UserRoles from "../../constants/users.ts";
 
@@ -48,7 +49,19 @@ const Frame2 = ({ onFunction, level }) => {
       setMessageError("");
       console.log(decodedData.level, level.acessLevel);
       if (decodedData.level == level.acessLevel && level.acessLevel == 3){
+        localStorage.setItem("jwt", response.data.token)
+        localStorage.setItem("level", decodedData.level)
         navigate('/Coordenacao')
+      }
+      else if(decodedData.level == level.acessLevel && level.acessLevel == 2){
+        localStorage.setItem("jwt", response.data.token)
+        localStorage.setItem("level", decodedData.level)
+        navigate('/Professor')
+      }
+      else if(decodedData.level == level.acessLevel && level.acessLevel == 1){
+        localStorage.setItem("jwt", response.data.token)
+        localStorage.setItem("level", decodedData.level)
+        navigate('/Responsavel')
       }
     })
     .catch(err => {
@@ -115,6 +128,7 @@ const Frame2 = ({ onFunction, level }) => {
 };
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const list_frame = [Frame1, Frame2];
   const [currentFrame, setCurrentFrame] = useState(0);
   const [acessLevel, setAcessLevel] = useState(0);
@@ -127,10 +141,25 @@ const Login = () => {
   // Renderiza o frame atual, passando a função NextFrame como prop
   const CurrentFrameComponent = list_frame[currentFrame];
 
+  useEffect(() => {
+    // Simula um carregamento
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 600); // Tempo de 3 segundos
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+
   return (
+    <>
+    <LoadingOverlay isLoading={isLoading} />
+    {!isLoading &&
     <div className="main">
-      <CurrentFrameComponent onFunction={NextFrame} level={{acessLevel}}/>
+      <CurrentFrameComponent onFunction={NextFrame} level={{acessLevel}}/>    
     </div>
+    }
+    </>
   );
 };
 

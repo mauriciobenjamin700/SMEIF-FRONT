@@ -5,20 +5,28 @@ import axios from "axios";
 
 import Input from "../../../components/Input/index.jsx";
 import Button from "../../../components/Button/index.jsx";
-import ManageClassPage from "./ManageClass.jsx";
-import TableClass from "../../../components/Table/TableClass.jsx";
 import API_URL from "../../../constants/api.ts"
+import TableTeacher from "../../../components/Table/TableTeacher.jsx";
+import TeacherManagementPage from "./TeacherManagement.jsx";
 
 
-const SearchClassPage = () => {
+const SearchTeacherPage = () => {
     const navigate = useNavigate(); 
     const [dataClass, setDataClass] = useState([]); // Estado para armazenar a lista de dados
 
+    const [name,setName] = useState("");
+
+
+
+    const searchTeacher = () => {
+        setDataClass(dataClass.filter(x => x.name === name))
+    }
     // Função assíncrona para buscar os dados
     const fetchData = async () => {
         try {
-        const response = await axios.get(`${API_URL}classes/list`);
-        setDataClass(response.data); // Atualiza o estado com os dados recebidos
+        const response = await axios.get(`${API_URL}teacher/list`);
+        setDataClass(response.data); 
+        console.log(dataClass)
         } catch (error) {
         console.error("Erro ao buscar os dados:", error);
         }
@@ -33,15 +41,17 @@ const SearchClassPage = () => {
             <div style={{display:"flex", alignItems:"center", flexDirection:"column"}}>
             <Input
                 text={"Buscar"}
-                place={"Informe a Turma"}
+                place={"Informe o nome"}
+                onChange={(value) => setName(value) }
             />
             <Button 
                 text={"Filtrar"} 
+                onFunction={() => searchTeacher()}
             />
             </div>
 
-            <TableClass 
-                columns={["Turma", "Turno", "Ação"]}
+            <TableTeacher
+                columns={["Nome","Disciplinas","Turmas","Telefone","Ação"]}
                 data={dataClass}
                 functions={[navigate]}
             />
@@ -50,31 +60,24 @@ const SearchClassPage = () => {
                 <Button
                     color={"#E8B931"}
                     text={"Cancelar"}
-                    onFunction={() => navigate("/Coordenacao/gerenciar_turmas")}
+                    onFunction={() => navigate("/Coordenacao/gerencia")}
                 
-                />
-                <Button
-                    text={"Buscar"}
-                    onFunction={() => {
-                        navigate("")
-                        }
-                    }
                 />
             </div>        
         </div>
     );
 }
 
-const SearchClass = () => {
+const SearchTeacher = () => {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<SearchClassPage/>} />
-                <Route path="gerenciar_turma/" element={<ManageClassPage/>} />
+                <Route path="/" element={<SearchTeacherPage/>} />
+                <Route path="editar_professor/" element={<TeacherManagementPage/>}/>
             </Routes>
         </div>
     );
 }
 
 
-export default SearchClass;
+export default SearchTeacher;

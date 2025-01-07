@@ -1,6 +1,19 @@
 import React from 'react';
 
+
+
 const InputSelect = ({ text, options, onChange, place }) => {
+    
+    function isPromise(value) {
+        return value instanceof Promise;
+      }
+
+    const resolveOptions = async () => {
+        const resolvedOptions = await options;
+    }
+    if (isPromise(options)){
+        resolveOptions()
+    }
     const handleSelectChange = (event) => {
         onChange(event.target.value); // Atualiza o valor selecionado
     };

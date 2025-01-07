@@ -1,23 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Input from "../../../components/Input/index.jsx"
 import InputSelect from "../../../components/InputSelect/index.jsx";
-import "../../../style/GenericRegister.scss";
 import Button from "../../../components/Button/index.jsx";
 import Modal from "../../../components/Modal/index.jsx";
+
+import "../../../style/GenericRegister.scss";
+
 import API_URL from "../../../constants/api.ts";
 import { formatAPIResponse } from "../../../services/requests/base.ts";
+import { get_classes } from "../../../services/requests/get.js";
 
 const RegisterDisciplinesPage = () => {
+    const haveClasses = useState(false)
     const navigate = useNavigate()
+    const [optionClasses, setOptionClasses] = useState([])
+
+    const getClasses = async () => {
+        const classes = await get_classes();
+        setOptionClasses(classes.map(obj => obj.class_info)); // `map` já pode ser usado sem `await`
+    }
 
     const [formData, setFormData] = useState({
         name: '',
+        education_level: "",
+        duration: null,
+        class_name: ""
     });
 
     const registerDiscipline = () => {
+        setFormData((prevData) => ({
+            ...prevData,
+            duration: parseFloat(prevData.duration)
+        }));
         axios.post(`${API_URL}disciplines/add`,formData)
         .then((response) => {
             setModalText(formatAPIResponse(response.request.response))
@@ -46,6 +63,16 @@ const RegisterDisciplinesPage = () => {
             [field]: value,
         }));
     };
+
+    useEffect(() => {
+
+        const fetchClasses = async () => {
+            if (optionClasses.length == 0) {
+            getClasses() // Armazena as classes no estado
+            }
+        };
+        fetchClasses();
+    }, []);
 
     return(
             <div className="main">
@@ -80,20 +107,19 @@ const RegisterDisciplinesPage = () => {
                 <InputSelect 
                     text={"Tipo de Ensino:"}
                     place={'ex: Infantil'}
-                    options={[]}
-                    onChange={(value) => handleInputChange('year', value)}
+                    options={["Infantil", "Fundamental", "Médio"]}
+                    onChange={(value) => handleInputChange('education_level', value)}
                 />
                 <Input 
                     text={"Carga Horária:"}
                     place={'Informe a carga horaria'}
-                    options={[]}
-                    onChange={(value) => handleInputChange('class', value)}
+                    onChange={(value) => handleInputChange('duration', value)}
                 />
                 <InputSelect 
-                    text={"Ano/Série:"}
-                    place={"Informe o Turno"}
-                    options={["Matutino","Vespertino","Noturno","Integral"]}
-                    onChange={(value) => handleInputChange('shift', value)}
+                    text={"Turma:"}
+                    place={"Selecione a Turma"}
+                    options={[optionClasses]}
+                    onChange={(value) => handleInputChange('class_name', value)}
                 />
                 
                 <div className="botoes-de-lado">
