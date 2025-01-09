@@ -133,7 +133,16 @@ const Header = () => {
         }else if(react_location.pathname.startsWith("/Responsavel")){
             if(react_location.pathname === "/Responsavel"){
                 setHeaderTitle("Menu Principal");
-                
+        
+            }
+            else if(react_location.pathname.startsWith("/Responsavel/selecionar_filho")){
+                setHeaderTitle("Qual dos filhos você quer às informações?");
+            }
+            else if(react_location.pathname.startsWith("/Responsavel/cadastro")){
+                setHeaderTitle("Monitorar Entrada e Saída");
+            }
+            else if(react_location.pathname.startsWith("/Responsavel/gerencia")){
+                setHeaderTitle("Buscar Matéria");
             }
         }else if(react_location.pathname.startsWith("/error")){
             setHeaderTitle("Menu Principal")
