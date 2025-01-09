@@ -7,9 +7,15 @@ import ParentRegisterPage from "./ParentRegister";
 import StudentRegisterPage from "./StudentRegister";
 import TeacherRegisterPage from "./TeacherRegister";
 
+import { useDispatch } from "react-redux";
+import { setImage, setTitle } from "../../../services/redux/reduxers/headerSlice.js";
+
 
 const RegisterMenu = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    dispatch(setImage({headerImage: true}))
+    dispatch(setTitle({headerTitle: "Realizar Cadastro"}))
 
     return (
         <div className="main">

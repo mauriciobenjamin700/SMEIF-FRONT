@@ -12,8 +12,14 @@ import API_URL from "../../../constants/api.ts"
 import { dataLocals } from "../../../data/cities.json"
 import { formatAPIResponse} from "../../../services/requests/base.ts"
 import UserRoles from "../../../constants/users.ts";
+import { useDispatch } from "react-redux";
+import { setImage, setTitle } from "../../../services/redux/reduxers/headerSlice.js";
 
 const ParentRegisterPage = () => {
+    const dispatch = useDispatch()
+    dispatch(setImage({headerImage: true}))
+    dispatch(setTitle({headerTitle: "Cadastro de Responsavel"}))
+
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({

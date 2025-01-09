@@ -5,6 +5,7 @@ import ImageButton from '../ImagemButton/index.jsx'
 import './TableSubject.scss'; // Importa os estilos específicos da tabela
 import IMAGES from '../../assets/index.ts'
 import Button from '../Button/index.jsx';
+import Modal from '../Modal/index.jsx';
 
 
 const TableStudent = ({ tittle, data, functions, columns = [] }) => {

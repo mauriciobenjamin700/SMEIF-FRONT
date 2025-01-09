@@ -13,6 +13,8 @@ import API_URL from "../../../constants/api.ts"
 import { get_classes, get_disciplines } from "../../../services/requests/get.js"
 import { formatAPIResponse } from "../../../services/requests/base.ts";
 import UserRoles from "../../../constants/users.ts";
+import { useDispatch } from "react-redux";
+import { setImage, setTitle } from "../../../services/redux/reduxers/headerSlice.js";
 
 
 const TeacherRegisterPage = () => {

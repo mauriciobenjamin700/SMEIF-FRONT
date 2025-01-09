@@ -15,7 +15,10 @@ import { setImage, setTitle } from "../../services/redux/reduxers/headerSlice.js
 
 const Menu = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
+  dispatch(setImage({headerImage: true}))
+  dispatch(setTitle({headerTitle: "Menu Principal"}))
+  
   return (
       <div className="box-menu">
         <ImageButton
@@ -54,8 +57,9 @@ const Menu = () => {
 
 const Coordination = () => {
   const user = useSelector((state) => state.user)
-  const dispatch = useDispatch()
+
   
+
   return (
     <div className="main">
       <Routes>
