@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import ImageButton from '../ImagemButton/index.jsx'
-import './Table.scss'; // Importa os estilos específicos da tabela
+import './TableSubject.scss'; // Importa os estilos específicos da tabela
 import IMAGES from '../../assets/index.ts'
 import Button from '../Button/index.jsx';
-import API_URL from '../../constants/api.ts';
-import Modal from '../Modal/index.jsx';
 
 
 const TableStudent = ({ tittle, data, functions, columns = [] }) => {
@@ -22,6 +20,10 @@ const TableStudent = ({ tittle, data, functions, columns = [] }) => {
         axios.delete(`${API_URL}student/delete`, {
             params: {
                 user_id: String(deleteModal)
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then((response) => {

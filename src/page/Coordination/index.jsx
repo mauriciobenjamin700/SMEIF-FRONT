@@ -10,6 +10,8 @@ import SendCommunications from "./SendCommunications/index.jsx";
 import ManageClasses from "./ManageClasses/index.jsx";
 import RegisterOccurrences from "./RegisterOccurrences/index.jsx";
 import ManageHorary from "./ManageHorary";
+import { useSelector, useDispatch } from "react-redux";
+import { setImage, setTitle } from "../../services/redux/reduxers/headerSlice.js";
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -51,6 +53,9 @@ const Menu = () => {
 };
 
 const Coordination = () => {
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  
   return (
     <div className="main">
       <Routes>

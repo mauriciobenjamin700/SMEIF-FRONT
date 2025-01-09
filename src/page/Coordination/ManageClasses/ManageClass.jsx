@@ -16,6 +16,11 @@ const ManageClassPage = () => {
 
     const data = location.state || {}
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
+
     const [formData, setFormData] = useState({
         education_level: data.education_level,
         name: data.name,
@@ -40,7 +45,8 @@ const ManageClassPage = () => {
         axios.delete(`${API_URL}classes/delete`, {
             params: {
                 class_id: data.id,
-            }
+            },
+            headers,
         })
         .then((response) => {
             console.log(response.data);
@@ -59,6 +65,7 @@ const ManageClassPage = () => {
                 params: {              // Query Parameters
                     class_id: data.id, 
                 },
+                headers,
             }
         )
         .then((response) => {

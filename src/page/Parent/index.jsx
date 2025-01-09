@@ -1,10 +1,13 @@
 
 import { Routes, Route, useNavigate } from "react-router-dom";
 import ImageButton from "../../components/ImagemButton";
+import SelectChildPage from "./SelectChildPage";
 
 import "./Parent.scss";
 
 import IMAGES from "../../assets";
+import MonitorInputOutput from "./MonitorInputOutput";
+import SearchSubject from "./SearchSubject/SearchSubject";
 const Menu = () => {
   const navigate = useNavigate();
 
@@ -13,12 +16,12 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.monitorar_entrada}
           text={"Monitorar entrada e saída"}
-          onFunction={() => navigate("cadastro")}
+          onFunction={() => navigate("monitorar_entrada")}
         />
         <ImageButton
           path={IMAGES.gerenciar_cadastro}
-          text={"Visualizar presença"}
-          onFunction={() => navigate("gerencia")}
+          text={"Visualizar presenças e faltas"}
+          onFunction={() => navigate("visualizar_presencas")}
         />
         <ImageButton
           path={IMAGES.visualizar_notas}
@@ -35,6 +38,11 @@ const Menu = () => {
           text={"Mensagens Recebidas"}
           onFunction={() => navigate("registrar_ocorrencias")}
         />
+        <ImageButton
+          path={"src/assets/calendario.png"}
+          text={"Gerenciar Horários"}
+          onFunction={() => navigate("gerenciar_horarios")}
+        />
       </div>
   );
 };
@@ -44,6 +52,9 @@ const Parent = () => {
     <div className="main">
       <Routes>
         <Route path="/" element={<Menu />} />
+        <Route path="selecionar_filho/*" element={<SelectChildPage />} />
+        <Route path="monitorar_entrada/*" element={<MonitorInputOutput/>} />
+        <Route path="visualizar_presencas/*" element={<SearchSubject/>} />
       </Routes>
     </div>
   );

@@ -20,17 +20,23 @@ const TableTeacher = ({ tittle, data, functions, columns = [] }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
+
     const deleteTeacher = () => {
         axios.delete(`${API_URL}user/delete`, {
             params: {
                 user_id: formatCPFResponse(String(deleteModal))
-            }
+            },
+            headers
         })
         .then((response) => {
             location.reload();
         })
         .catch((error) => {
-            console.error(error.response);
+            console.error(error.response?.request);
         });
     };
     

@@ -7,6 +7,12 @@ import InputCheck from "../../../components/InputCheck/index.jsx";
 import "../../../style/GenericRegister.scss";
 import "./style/ManageHorary.scss";
 import Button from "../../../components/Button/index.jsx";
+import Modal from "../../../components/Modal/index.jsx";
+
+import { get_classes, get_disciplines, get_teachers } from "../../../services/requests/get.js";
+import axios from "axios";
+import API_URL from "../../../constants/api.ts";
+import { formatAPIResponse, formatCPFResponse } from "../../../services/requests/base.ts";
 
 const RecurrenceForm = ({recurrence, onRecurrenceChange}) => {
 
@@ -30,7 +36,7 @@ const RecurrenceForm = ({recurrence, onRecurrenceChange}) => {
     return (
         <div>
             <h5>Dias e Horários de Recorrência</h5>
-            <form className="checklist">
+            <div className="checklist">
                 {recurrence.map((item, index) => (
                     <div className="checklist-row" key={index}>
                         <input
@@ -75,7 +81,7 @@ const RecurrenceForm = ({recurrence, onRecurrenceChange}) => {
 
                     </div>
                 ))}
-            </form>
+            </div>
         </div>
     );
 };
@@ -84,22 +90,126 @@ const RecurrenceForm = ({recurrence, onRecurrenceChange}) => {
 
 const RegisterHoraryPage = () => {
     const navigate = useNavigate()
-    
+
+    const [optionDisciplines, setOptionDisciplines] = useState([])
+    const [optionClasses, setOptionClasses] = useState([])
+    const [optionTeachers, setOptionTeachers] = useState([])
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalText, setModalText] = useState("")
+    const [success, setsuccess] = useState(false)
+
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    const getTeachers = async () => {
+        const teachers = await get_teachers();
+        setOptionTeachers(teachers.map(obj => obj.user.name +" "+ obj.user.cpf))
+    }
+
+    const getDisciplines = async () => {
+        const disciplines = await get_disciplines();
+        setOptionDisciplines(disciplines.map(obj => obj.name)); // `map` já pode ser usado sem `await`
+    }
+
+    const getClasses = async () => {
+        const classes = await get_classes();
+        setOptionClasses(classes.map(obj => obj.class_info)); // `map` já pode ser usado sem `await`
+    }
+
     const [formData, setFormData] = useState({
         class_id: "",
-        disciplines_id: null,
+        disciplines_id: "",
         teacher_id: "",
         start_date: "",
         end_date: "",
         recurrences: []
     });
 
+    const filterTeacher = async (teacher_id) => {
+        teacher_id = teacher_id.match(/\b\d{3}\.\d{3}\.\d{3}-\d{2}\b/);
+        console.log(teacher_id);
+        const teachers = await get_teachers();
+        const teacherObj = teachers.find(obj => obj.user.cpf == teacher_id);
+        console.log(teacherObj)
+        if(teacherObj){
+            addTeacher(formatCPFResponse(teacherObj.user.cpf))
+        }
+        else{
+            console.log("Professor não encontrado")
+        }
+    }
+    
+    const filterClass = async (classes_info) => {
+        const classes = await get_classes();
+        const classObj = classes.find(obj => obj.class_info == classes_info);
+        if (classObj) {
+            addClass(classObj.id)
+        } else {
+          console.log("Classe não encontrada!");
+        }
+      };
+
+    const filterDisciplines = async (disciplines_name) => {
+        const disciplines = await get_disciplines();
+        const disciplineObj = disciplines.find(obj => obj.name == disciplines_name);
+        
+        if (disciplineObj) {
+            addDisciplines(disciplineObj.id)
+        } else {
+          console.log("Disciplina não encontrada!");
+        }
+      };
+
+    const addTeacher = (teacher_id) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            teacher_id: teacher_id
+        }))
+    }
+    
+    const addDisciplines = (new_discipline) => {
+            setFormData((prevData) => ({
+                ...prevData,
+                disciplines_id: new_discipline
+            }))
+    }
+
+    const addClass = (new_class) => {
+            setFormData((prevData) => ({
+                ...prevData,
+                class_id: new_class
+            }))
+    }
+
+    useEffect(() => {
+        const fetchTeachers = () => {
+            if (optionTeachers.length == 0){
+                getTeachers()
+            }
+        };
+        fetchTeachers();
+        const fetchClasses = async () => {
+            if (optionClasses.length == 0) {
+            getClasses() // Armazena as classes no estado
+            }
+        };
+        fetchClasses();
+
+        const fetchDisciplines = async () => {
+            if (optionDisciplines.length == 0) {
+                getDisciplines()
+            }
+        };
+        fetchDisciplines();
+    }, []);
+
     const [recurrence, setRecurrence] = useState([
-        { day_of_week: "Segunda-feira", start_time: "", end_time: "", checked: false },
-        { day_of_week: "Terça-feira", start_time: "", end_time: "", checked: false },
-        { day_of_week: "Quarta-feira", start_time: "", end_time: "", checked: false },
-        { day_of_week: "Quinta-feira", start_time: "", end_time: "", checked: false },
-        { day_of_week: "Sexta-feira", start_time: "", end_time: "", checked: false },
+        { day_of_week: "Segunda", start_time: "", end_time: "", checked: false },
+        { day_of_week: "Terça", start_time: "", end_time: "", checked: false },
+        { day_of_week: "Quarta", start_time: "", end_time: "", checked: false },
+        { day_of_week: "Quinta", start_time: "", end_time: "", checked: false },
+        { day_of_week: "Sexta", start_time: "", end_time: "", checked: false },
     ]);
 
     const handleRecurrenceChange = (updatedRecurrence) => {
@@ -128,28 +238,68 @@ const RegisterHoraryPage = () => {
         }));
     };
 
+    const register_horary = () => {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
+        console.log(formData)
+
+        axios.post(`${API_URL}classes/add-event`,formData, { headers })
+        .then((response) => {
+            setModalText(formatAPIResponse(response.request?.response))
+            setsuccess(true)
+            openModal()
+        })
+        .catch((error) => {
+            setModalText(formatAPIResponse(error.request?.response))
+            openModal()
+        })
+    }
+
     return(
             <div className="main">
             <form action="" method="get">
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                {(success && <>
+                    <h2>Cadastro realizado com sucesso!</h2>
+                    <p>{modalText}</p>
+                    <Button 
+                        onFunction={() => navigate("/Coordenacao/cadastro")}
+                        text={"Fechar"}
+                    />
+                
+                </>)}
+                {(!success && <>
+                    <h2>Erro ao realizar cadastro </h2>
+                    <p>{modalText}</p>
+                    <Button 
+                        onFunction={() => closeModal()}
+                        text={"Fechar"}
+                    />
+                </>)
+                }
+            </Modal>
                 <h5>Configuração de Recorrência:</h5>
                 <hr />                
                 <InputSelect 
                     text={"Turma:"}
                     place={"ex: 1º A"}
-                    options={[]}
-                    onChange={(value) => handleInputChange('teaching', value)}
+                    options={optionClasses}
+                    onChange={(value) => filterClass(value)}
                 />
                 <InputSelect 
                     text={"Disciplina: *"}
                     place={'ex: Matematica'}
-                    options={[]}
-                    onChange={(value) => handleInputChange('year', value)}
+                    options={optionDisciplines}
+                    onChange={(value) => filterDisciplines(value)}
                 />
                 <InputSelect 
                     text={"Professor:"}
                     place={'ex: "Fulano"'}
-                    options={[]}
-                    onChange={(value) => handleInputChange('class', value)}
+                    options={optionTeachers}
+                    onChange={(value) => filterTeacher(value)}
                 />
                 <h5>Período de Recorrência</h5>
                 <hr />
@@ -171,8 +321,14 @@ const RegisterHoraryPage = () => {
 
                 
                 <div className="botoes-de-lado">
-                    <Button text={"Cancelar"} color={"#C97414"} onFunction={() => navigate("/Coordenacao/gerenciar_turmas")}/>
-                    <Button text={"Salvar Informações"} color={"#14AE5C"} onFunction={() => console.log(formData.recurrences)}/>
+                    <Button 
+                        text={"Cancelar"} 
+                        color={"#C97414"} 
+                        onFunction={() => navigate("/Coordenacao/gerenciar_turmas")}/>
+                    <Button 
+                        text={"Salvar Informações"} 
+                        color={"#14AE5C"} 
+                        onFunction={() => {register_horary()}}/>
                 </div>
             </form>
         </div>

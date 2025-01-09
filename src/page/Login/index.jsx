@@ -14,7 +14,9 @@ import API_URL from "../../constants/api.ts"
 import LoadingOverlay from "../../components/LoadingOverlay/index.jsx";
 
 import UserRoles from "../../constants/users.ts";
-
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../services/redux/reduxers/userSlice.js';
+import { setImage, setTitle } from '../../services/redux/reduxers/headerSlice.js';
 
 const Frame1 = ({ onFunction }) => {
   return (
@@ -30,42 +32,57 @@ const Frame1 = ({ onFunction }) => {
 };
 
 const Frame2 = ({ onFunction, level }) => {
-  const [user, setUser] = useState("")
+  const [userLogin, setUserLogin] = useState("")
   const [password, setPassword] = useState("")
   const [messageError, setMessageError] = useState("")
   const navigate = useNavigate();
   const errorRef = useRef(null);
-  
+  const dispatch = useDispatch();
+
 
   const login = () =>{
-    
+    console.log(API_URL+"user/login")
     const api_url = `${API_URL}user/login`
     axios.post(api_url,{
-      cpf:user,
-      password:password
+      cpf:userLogin,
+      password:password,
     })
     .then(response => {
       const decodedData = jwtDecode(response.data.token);
       setMessageError("");
-      console.log(decodedData.level, level.acessLevel);
+      console.log(decodedData.level, level.acessLevel)
       if (decodedData.level == level.acessLevel && level.acessLevel == 3){
         localStorage.setItem("jwt", response.data.token)
         localStorage.setItem("level", decodedData.level)
+        
+        dispatch(setUser(decodedData))
+        dispatch(setImage({headerImage: true}))
+        dispatch(setTitle({headerTitle: "Menu Principal"}))
         navigate('/Coordenacao')
       }
       else if(decodedData.level == level.acessLevel && level.acessLevel == 2){
         localStorage.setItem("jwt", response.data.token)
         localStorage.setItem("level", decodedData.level)
+
+        dispatch(setUser(decodedData))
+        dispatch(setImage({headerImage: true}))
+        dispatch(setTitle({headerTitle: "Menu Principal"}))
         navigate('/Professor')
       }
       else if(decodedData.level == level.acessLevel && level.acessLevel == 1){
         localStorage.setItem("jwt", response.data.token)
         localStorage.setItem("level", decodedData.level)
+
+        dispatch(setUser(decodedData))
+        dispatch(setImage({headerImage: true}))
+        dispatch(setTitle({headerTitle: "Menu Principal"}))
+
         navigate('/Responsavel')
       }
     })
     .catch(err => {
       setMessageError("Login ou senha inválidos! ");
+      console.log(err)
       setTimeout(() => {
         errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
@@ -89,7 +106,7 @@ const Frame2 = ({ onFunction, level }) => {
       <img src={image_login_2} alt="Imagem de Login 2" />
       <div id="conteudo_frame2" onKeyDown={handleKeyPress}>
         <Input 
-          onChange={setUser} 
+          onChange={setUserLogin} 
           place={"CPF"}
           />
         
@@ -132,6 +149,9 @@ const Login = () => {
   const list_frame = [Frame1, Frame2];
   const [currentFrame, setCurrentFrame] = useState(0);
   const [acessLevel, setAcessLevel] = useState(0);
+  const dispatch = useDispatch()
+  dispatch(setImage(false))
+  dispatch(setTitle(""))
 
   const NextFrame = (frame,level) => {
     setCurrentFrame(frame);

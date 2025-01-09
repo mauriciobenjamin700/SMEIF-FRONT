@@ -22,6 +22,10 @@ const TableParent = ({ tittle, data, functions, columns = [] }) => {
         axios.delete(`${API_URL}user/delete`, {
             params: {
                 user_id: String(deleteModal)
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then((response) => {
