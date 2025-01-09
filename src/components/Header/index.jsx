@@ -38,7 +38,7 @@ const Header = () => {
         useCheckAccessLevel(navigate, react_location);        
     },[])
 
-    if(true){
+    if(headerImage){
         return(
             <header className="header">
                 <img src={image} alt="" />

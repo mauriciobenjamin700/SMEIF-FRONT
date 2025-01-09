@@ -1,0 +1,48 @@
+@use "../../../style/breakpoints" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@media only screen and ($very-small) {
+    
+}
+
+@media only screen and ($small) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    .child-selection{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        
+    }   
+    .back-button{
+        margin-top: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 20px;
+        min-width: 220px;
+        max-height: 33px;
+        
+    }
+}
+
+@media only screen and ($medium) {
+}
+
+@media only screen and ($large) {
+}
+
+@media only screen and ($extra-large) {
+}
+
+@media only screen and ($extra-extra-large) {    
+}
