@@ -107,13 +107,6 @@ const TeacherRegisterPage = () => {
     });
 
     useEffect(() => {
-        if(formData.cpf){
-            setDisciplinesAndClassesData((prevData) => ({
-                ...prevData,
-                user_cpf: formData.cpf
-            }));
-        }
-
         const fetchClasses = async () => {
             if (optionClasses.length == 0) {
             getClasses() // Armazena as classes no estado
@@ -127,7 +120,7 @@ const TeacherRegisterPage = () => {
             }
         };
         fetchDisciplines();
-    }, [optionDisciplines, optionClasses, formData.cpf]);
+    }, []);
 
     const optionsStates = dataLocals.flatMap((local) => ([
         local.estado // Nome do estado, por exemplo, "Acre"
@@ -178,29 +171,38 @@ const TeacherRegisterPage = () => {
     };
 
     const registerTeacher = () => {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
+        const register_disciplines = disciplinesAndClassesData.disciplines_id.reduce((dlist, item) => {
+            if(!dlist.includes(item)){
+                dlist.push(item)
+            }
+            return dlist;
+        }, [])
+
+        const register_classes = disciplinesAndClassesData.classes_id.reduce((clist, item) => {
+            if(!clist.includes(item)){
+                clist.push(item)
+            }
+            return clist;
+        }, [])
+
+        setDisciplinesAndClassesData((prevData) => ({
+            ...prevData,
+            disciplines_id: register_disciplines,
+            classes_id: register_classes,
+        }))
+
         if(formData.password.length > 7){
                 if(formData.password == formData.confirmPassword){
-                    axios.post(`${API_URL}user/add`, formData).then(() => {
-                        const register_disciplines = disciplinesAndClassesData.disciplines_id.reduce((dlist, item) => {
-                            if(!dlist.includes(item)){
-                                dlist.push(item)
-                            }
-                            return dlist;
-                        }, [])
-                        const register_classes = disciplinesAndClassesData.classes_id.reduce((clist, item) => {
-                            if(!clist.includes(item)){
-                                clist.push(item)
-                            }
-                            return clist;
-                        }, [])
-                        setDisciplinesAndClassesData((prevData) => ({
-                            ...prevData,
-                            disciplines_id: register_disciplines,
-                            classes_id: register_classes,
-                        }))
+                    axios.post(`${API_URL}user/add`, formData, { headers }).then(() => {
+                        console.log(disciplinesAndClassesData)
 
-                        axios.post(`${API_URL}teacher/add-disciplines`, disciplinesAndClassesData).then(() => {
-                            axios.post(`${API_URL}teacher/add-classes`, disciplinesAndClassesData).then(response => {
+                        axios.post(`${API_URL}teacher/add-disciplines`, disciplinesAndClassesData, { headers }).then(() => {
+                            axios.post(`${API_URL}teacher/add-classes`, disciplinesAndClassesData, { headers }).then(response => {
                                 setModalText("Cadastro realizado com sucesso!")
                                 setsuccess(true)
                                 openModal()
@@ -273,7 +275,10 @@ const TeacherRegisterPage = () => {
                     <Input
                         text="CPF: "
                         place="Digite seu CPF"
-                        onChange={(value) => handleInputChange('cpf', value)}
+                        onChange={(value) => {handleInputChange('cpf', value), setDisciplinesAndClassesData((prevData) => ({
+                            ...prevData,
+                            user_cpf: value
+                        }));}}
                     />
                     
                     <InputSelect 

@@ -105,14 +105,19 @@ const StudentRegisterPage = () => {
     };
 
     const registerStudent = () => {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
         if(filterClass()) {
             console.log(formData.class_id)
             if (secondResponsible != null && secondResponsible.cpf !== ""){
-                axios.get(`${API_URL}user/get`,secondResponsible.cpf).then(
-                    axios.post(`${API_URL}student/add`, formData)
+                axios.get(`${API_URL}user/get`, secondResponsible.cpf, { headers }).then(
+                    axios.post(`${API_URL}student/add`, formData, { headers })
                     .then((response) => {
                         setModalText(formatAPIResponse(response.request.response))
-                        axios.post(`${API_URL}parent/add`,secondResponsible).then(response =>{
+                        axios.post(`${API_URL}parent/add`, secondResponsible, { headers }).then(response =>{
                             openModal()
                             setsuccess(true)
                         })
@@ -132,7 +137,7 @@ const StudentRegisterPage = () => {
                     })   
                 )
             }else{
-                axios.post(`${API_URL}student/add`, formData)
+                axios.post(`${API_URL}student/add`, formData, { headers })
                 .then((response) => {
                     setModalText(formatAPIResponse(response.request.response))
                     openModal()

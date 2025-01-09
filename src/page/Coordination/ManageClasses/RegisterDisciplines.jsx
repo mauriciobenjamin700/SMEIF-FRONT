@@ -31,11 +31,15 @@ const RegisterDisciplinesPage = () => {
     });
 
     const registerDiscipline = () => {
-        setFormData((prevData) => ({
-            ...prevData,
-            duration: parseFloat(prevData.duration)
-        }));
-        axios.post(`${API_URL}disciplines/add`,formData)
+        console.log(formData.duration);
+        
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+    
+
+        axios.post(`${API_URL}disciplines/add`, formData ,{ headers })
         .then((response) => {
             setModalText(formatAPIResponse(response.request.response))
             setSucess(true)
@@ -113,7 +117,7 @@ const RegisterDisciplinesPage = () => {
                 <Input 
                     text={"Carga Horária:"}
                     place={'Informe a carga horaria'}
-                    onChange={(value) => handleInputChange('duration', value)}
+                    onChange={(value) => handleInputChange('duration', parseInt(value))}
                 />
                 <InputSelect 
                     text={"Turma:"}

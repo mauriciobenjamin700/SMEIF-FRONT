@@ -22,6 +22,10 @@ const TableDisciplines = ({ tittle, data, functions, columns = [] }) => {
         axios.delete(`${API_URL}disciplines/delete`, {
             params: {
                 discipline_name: String(deleteModal)
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then((response) => {

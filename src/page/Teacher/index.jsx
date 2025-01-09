@@ -5,6 +5,8 @@ import ImageButton from "../../components/ImagemButton";
 import "./Teacher.scss";
 
 import IMAGES from "../../assets";
+import { useDispatch } from "react-redux";
+import RegisterPresencePage from "./RegisterPresence";
 const Menu = () => {
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.registro_faltas}
           text={"Registro de Presenças e Faltas"}
-          onFunction={() => navigate("cadastro")}
+          onFunction={() => navigate("registrar_presenca")}
         />
         <ImageButton
           path={IMAGES.gerenciar_cadastro}
@@ -40,10 +42,12 @@ const Menu = () => {
 };
 
 const Teacher = () => {
+
   return (
     <div className="main">
       <Routes>
         <Route path="/" element={<Menu />} />
+        <Route path="registrar_presenca/*" element={<RegisterPresencePage/>} />
       </Routes>
     </div>
   );

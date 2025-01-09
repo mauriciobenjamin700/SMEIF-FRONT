@@ -13,11 +13,14 @@ import TableDisciplines from "../../../components/Table/TableDisciplines.jsx";
 const SearchDisciplinesPage = () => {
     const navigate = useNavigate(); 
     const [dataClass, setDataClass] = useState([]); // Estado para armazenar a lista de dados
-
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
     // Função assíncrona para buscar os dados
     const fetchData = async () => {
         try {
-        const response = await axios.get(`${API_URL}disciplines/list`);
+        const response = await axios.get(`${API_URL}disciplines/list`, { headers });
         setDataClass(response.data); // Atualiza o estado com os dados recebidos
         console.log(response.data);
         } catch (error) {

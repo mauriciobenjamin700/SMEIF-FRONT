@@ -46,9 +46,14 @@ const ParentRegisterPage = () => {
     const closeModal = () => setIsModalOpen(false);
 
     const registerUser = () => {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
         if(formData.password.length > 7){
             if(formData.password == formData.confirmPassword){
-                axios.post(`${API_URL}user/add`, formData)
+                axios.post(`${API_URL}user/add`, formData, { headers })
                 .then((response) => {
                     setModalText(formatAPIResponse(response.request.response))
                     openModal()

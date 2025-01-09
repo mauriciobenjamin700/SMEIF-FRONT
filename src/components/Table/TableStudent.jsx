@@ -22,6 +22,10 @@ const TableStudent = ({ tittle, data, functions, columns = [] }) => {
         axios.delete(`${API_URL}student/delete`, {
             params: {
                 user_id: String(deleteModal)
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then((response) => {

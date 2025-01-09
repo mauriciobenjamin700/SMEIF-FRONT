@@ -17,11 +17,15 @@ const TableClass = ({ tittle, data, functions, columns = [] }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
-    
+
     const deleteClass = () => {
         axios.delete(`${API_URL}classes/delete`, {
             params: {
                 class_id: String(deleteModal)
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         })
         .then((response) => {

@@ -23,8 +23,13 @@ const SearchTeacherPage = () => {
     }
     // Função assíncrona para buscar os dados
     const fetchData = async () => {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
         try {
-        const response = await axios.get(`${API_URL}teacher/list`);
+        const response = await axios.get(`${API_URL}teacher/list`, { headers });
         setDataClass(response.data); 
         console.log(dataClass)
         } catch (error) {

@@ -8,6 +8,9 @@ const checkAccessLevel = (navigate, location) => {
 
     const userLevel = localStorage.getItem('level');
     const currentPath = location.pathname;
+    if (userLevel == 4){
+        return;
+    }
     if (userLevel && currentPath.startsWith(levelMap[userLevel])) {
         return; // Acesso permitido
     }

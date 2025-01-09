@@ -24,7 +24,12 @@ const RegisterNewClassPage = () => {
     });
 
     const registerClass = () => {
-        axios.post(`${API_URL}classes/add`,formData)
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
+        axios.post(`${API_URL}classes/add`,formData, { headers })
         .then((response) => {
             setModalText(formatAPIResponse(response.request.response))
             setSucess(true)

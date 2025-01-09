@@ -21,6 +21,11 @@ const ManageDisciplinesPage = () => {
         name: data.name,
     });
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalText, setModalText] = useState("")
     const [sucess, setSucess] = useState(false)
@@ -37,7 +42,8 @@ const ManageDisciplinesPage = () => {
         axios.delete(`${API_URL}disciplines/delete`, {
             params: {
                 discipline_name: data.name,
-            }
+            },
+            headers
         })
         .then((response) => {
             console.log(response.data);
@@ -48,7 +54,7 @@ const ManageDisciplinesPage = () => {
     };
 
     const saveChanges = () => {
-        
+
         axios.put(
             `${API_URL}disciplines/update`, // URL base
             formData,                  // Corpo da requisição (data)
@@ -56,6 +62,7 @@ const ManageDisciplinesPage = () => {
                 params: {              // Query Parameters
                     name: data.name, 
                 },
+                headers
             }
         )
         .then((response) => {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios  from "axios";
 
 import "../../Coordination/RegisterPeople/style/StudentRegister.scss";
 import "../../../style/GenericRegister.scss";
@@ -26,7 +27,11 @@ const TeacherManagementPage = () => {
     };
 
     const saveChanges = () => {
-        
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        }
+
         axios.put(
             `${API_URL}teacher/update`, // URL base
             formData,                  // Corpo da requisição (data)
@@ -34,7 +39,7 @@ const TeacherManagementPage = () => {
                 params: {              // Query Parameters
                     name: data.name, 
                 },
-            }
+            }, { headers }
         )
         .then((response) => {
             console.log(response);
