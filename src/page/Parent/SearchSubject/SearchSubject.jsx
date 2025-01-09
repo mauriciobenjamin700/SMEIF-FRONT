@@ -25,7 +25,7 @@ const SearchSubjectPage = ({userType}) => {
                 <Button
                 color={"#E8B931"}
                 text={"Sair"}
-                onFunction={() => navigate("/Parent")}
+                onFunction={() => navigate("/Responsavel")}
                     
                 />
             </div>  

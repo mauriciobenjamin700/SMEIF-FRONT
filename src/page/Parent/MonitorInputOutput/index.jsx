@@ -14,7 +14,7 @@ const MonitorInputOutputPage = () => {
                 <Button text={"Histórico de Notificações"} onFunction={() => navigate("historico_notificacao")}/>
             </div>
             <div className="botoes-de-lado">
-                <Button text={"Voltar"} color={"#E8B931"} onFunction={() => navigate("/Parent")}/>
+                <Button text={"Voltar"} color={"#E8B931"} onFunction={() => navigate("/Responsavel")}/>
                 <Button color={"#14AE5C"} text={"Confirmar"} />
             </div>
         </div>

@@ -16,12 +16,12 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.monitorar_entrada}
           text={"Monitorar entrada e saída"}
-          onFunction={() => navigate("cadastro")}
+          onFunction={() => navigate("monitorar_entrada")}
         />
         <ImageButton
           path={IMAGES.gerenciar_cadastro}
           text={"Visualizar presenças e faltas"}
-          onFunction={() => navigate("gerencia")}
+          onFunction={() => navigate("visualizar_presencas")}
         />
         <ImageButton
           path={IMAGES.visualizar_notas}
@@ -53,8 +53,8 @@ const Parent = () => {
       <Routes>
         <Route path="/" element={<Menu />} />
         <Route path="selecionar_filho/*" element={<SelectChildPage />} />
-        <Route path="cadastro/*" element={<MonitorInputOutput/>} />
-        <Route path="gerencia/*" element={<SearchSubject/>} />
+        <Route path="monitorar_entrada/*" element={<MonitorInputOutput/>} />
+        <Route path="visualizar_presencas/*" element={<SearchSubject/>} />
       </Routes>
     </div>
   );
