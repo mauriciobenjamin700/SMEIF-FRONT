@@ -24,17 +24,17 @@ const Menu = () => {
           onFunction={() => navigate("cadastro")}
         />
         <ImageButton
-          path={"src/assets/gerenciar_cadastro.png"}
+          path={IMAGES.gerenciar_cadastro}
           text={"Gerenciar Cadastros"}
           onFunction={() => navigate("gerencia")}
         />
         <ImageButton
-          path={"src/assets/enviar_comunicado.png"}
+          path={IMAGES.enviar_comunicado}
           text={"Enviar Comunicados"}
           onFunction={() => navigate("enviar_comunicado")}
         />
         <ImageButton
-          path={"src/assets/cadastrar_turmas.png"}
+          path={IMAGES.cadastrar_turmas}
           text={"Gerenciar Turmas e Disciplinas"}
           onFunction={() => navigate("gerenciar_turmas")}
         />
@@ -44,7 +44,7 @@ const Menu = () => {
           onFunction={() => navigate("registrar_ocorrencias")}
         />
         <ImageButton
-          path={"src/assets/calendario.png"}
+          path={IMAGES.calendario}
           text={"Gerenciar Horários"}
           onFunction={() => navigate("gerenciar_horarios")}
         />
