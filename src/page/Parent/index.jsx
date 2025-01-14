@@ -39,7 +39,7 @@ const Menu = () => {
           onFunction={() => navigate("registrar_ocorrencias")}
         />
         <ImageButton
-          path={"src/assets/calendario.png"}
+          path={IMAGES.calendario}
           text={"Gerenciar Horários"}
           onFunction={() => navigate("gerenciar_horarios")}
         />
