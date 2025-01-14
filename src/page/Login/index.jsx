@@ -12,11 +12,14 @@ import Button from "../../components/Button/index.jsx";
 import Input from "../../components/Input/index.jsx";
 import API_URL from "../../constants/api.ts"
 import LoadingOverlay from "../../components/LoadingOverlay/index.jsx";
+import { formatCPFResponse } from '../../services/requests/base.ts';
 
 import UserRoles from "../../constants/users.ts";
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../services/redux/reduxers/userSlice.js';
 import { setImage, setTitle } from '../../services/redux/reduxers/headerSlice.js';
+import { get_events } from '../../services/requests/get.js';
+import { setEvents } from '../../services/redux/reduxers/eventsSlice.js';
 
 const Frame1 = ({ onFunction }) => {
   return (
@@ -63,8 +66,14 @@ const Frame2 = ({ onFunction, level }) => {
       else if(decodedData.level == level.acessLevel && level.acessLevel == 2){
         localStorage.setItem("jwt", response.data.token)
         localStorage.setItem("level", decodedData.level)
-
+        const eventsData = get_events()
         dispatch(setUser(decodedData))
+
+        eventsData.then((response) => {
+          console.log(response.filter(event => event.teacher_cpf == formatCPFResponse(decodedData.cpf)))
+          dispatch(setEvents({events: response.filter(event => event.teacher_cpf == formatCPFResponse(decodedData.cpf))}))
+          })
+          
         dispatch(setImage({headerImage: true}))
         dispatch(setTitle({headerTitle: "Menu Principal"}))
         navigate('/Professor')

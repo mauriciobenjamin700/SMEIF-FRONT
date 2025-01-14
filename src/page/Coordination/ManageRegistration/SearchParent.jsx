@@ -29,8 +29,7 @@ const SearchParentPage = () => {
         }
         try {
         const response = await axios.get(`${API_URL}user/list`, { headers });
-        setDataClass(response.data.filter(x => x.level === 1)); 
-        console.log(dataClass)
+        setDataClass(response.data.filter(x => x.level == 1));
         } catch (error) {
         console.error("Erro ao buscar os dados:", error);
         }
@@ -40,6 +39,9 @@ const SearchParentPage = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    console.log(dataClass)
+
     return(
         <div className="main">
             <div style={{display:"flex", alignItems:"center", flexDirection:"column"}}>

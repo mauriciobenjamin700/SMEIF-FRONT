@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 
 import userReducer from '../redux/reduxers/userSlice.js';
 import headerReducer from '../redux/reduxers/headerSlice.js';
+import eventsReducer from '../redux/reduxers/eventsSlice.js'
 
 // Configuração do redux-persist
 const persistConfig = {
@@ -16,6 +17,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   header: headerReducer,
+  events: eventsReducer,
 });
 
 // Aplicando persistência ao rootReducer

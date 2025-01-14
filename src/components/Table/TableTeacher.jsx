@@ -28,9 +28,9 @@ const TableTeacher = ({ tittle, data, functions, columns = [] }) => {
     const deleteTeacher = () => {
         axios.delete(`${API_URL}user/delete`, {
             params: {
-                user_id: formatCPFResponse(String(deleteModal))
+                user_cpf: formatCPFResponse(String(deleteModal))
             },
-            headers
+            headers: headers
         })
         .then((response) => {
             location.reload();

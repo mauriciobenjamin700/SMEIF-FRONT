@@ -12,6 +12,7 @@ import Modal from "../../../components/Modal/index.jsx";
 import { get_classes, get_disciplines, get_teachers } from "../../../services/requests/get.js";
 import axios from "axios";
 import API_URL from "../../../constants/api.ts";
+import HORARY from "../../../constants/horary.ts";
 import { formatAPIResponse, formatCPFResponse } from "../../../services/requests/base.ts";
 
 const RecurrenceForm = ({recurrence, onRecurrenceChange}) => {
@@ -32,7 +33,7 @@ const RecurrenceForm = ({recurrence, onRecurrenceChange}) => {
         onRecurrenceChange(updatedRecurrence);
     };
 
-    const options = ["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"]
+    const options = HORARY
     return (
         <div>
             <h5>Dias e Horários de Recorrência</h5>
@@ -120,17 +121,17 @@ const RegisterHoraryPage = () => {
     const [formData, setFormData] = useState({
         class_id: "",
         disciplines_id: "",
-        teacher_id: "",
+        teacher_cpf: "",
         start_date: "",
         end_date: "",
         recurrences: []
     });
 
-    const filterTeacher = async (teacher_id) => {
-        teacher_id = teacher_id.match(/\b\d{3}\.\d{3}\.\d{3}-\d{2}\b/);
-        console.log(teacher_id);
+    const filterTeacher = async (teacher_cpf) => {
+        teacher_cpf = teacher_cpf.match(/\b\d{3}\.\d{3}\.\d{3}-\d{2}\b/);
+        console.log(teacher_cpf);
         const teachers = await get_teachers();
-        const teacherObj = teachers.find(obj => obj.user.cpf == teacher_id);
+        const teacherObj = teachers.find(obj => obj.user.cpf == teacher_cpf);
         console.log(teacherObj)
         if(teacherObj){
             addTeacher(formatCPFResponse(teacherObj.user.cpf))
@@ -161,10 +162,10 @@ const RegisterHoraryPage = () => {
         }
       };
 
-    const addTeacher = (teacher_id) => {
+    const addTeacher = (teacher_cpf) => {
         setFormData((prevData) => ({
             ...prevData,
-            teacher_id: teacher_id
+            teacher_cpf: teacher_cpf
         }))
     }
     

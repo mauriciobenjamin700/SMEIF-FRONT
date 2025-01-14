@@ -46,3 +46,18 @@ export const get_disciplines = async () => {
         return []; // Retorna uma lista vazia em caso de erro
     }
 }
+
+export const get_events = async () => {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
+
+    try {
+        const response = await axios.get(`${API_URL}classes/list-events`, { headers });
+        return response.data; // Retorna os dados diretamente
+    } catch (err) {
+        console.error('Erro ao buscar disciplinas:', err);
+        return []; // Retorna uma lista vazia em caso de erro
+    }
+}
