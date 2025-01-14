@@ -5,8 +5,10 @@ import ImageButton from "../../components/ImagemButton";
 import "./Teacher.scss";
 
 import IMAGES from "../../assets";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RegisterPresencePage from "./RegisterPresence";
+import ViewHoraryPage from "./ViewHorary";
+import RegisterNotesPage from "./RegisterNotes";
 const Menu = () => {
   const navigate = useNavigate();
 
@@ -15,17 +17,17 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.registro_faltas}
           text={"Registro de Presenças e Faltas"}
-          onFunction={() => navigate("registrar_presenca")}
+          onFunction={() => navigate("registro_de_presencas")}
         />
         <ImageButton
           path={IMAGES.gerenciar_cadastro}
           text={"Registro de Notas"}
-          onFunction={() => navigate("gerencia")}
+          onFunction={() => navigate("registro_de_notas")}
         />
         <ImageButton
           path={IMAGES.calendario}
           text={"Visualizar Horários"}
-          onFunction={() => navigate("enviar_comunicado")}
+          onFunction={() => navigate("visualizar_horarios")}
         />
         <ImageButton
           path={IMAGES.enviar_comunicado}
@@ -47,7 +49,10 @@ const Teacher = () => {
     <div className="main">
       <Routes>
         <Route path="/" element={<Menu />} />
-        <Route path="registrar_presenca/*" element={<RegisterPresencePage/>} />
+        <Route path="registro_de_presencas/*" element={<RegisterPresencePage/>} />
+        <Route path="registro_de_notas/*" element={<RegisterNotesPage/>} />
+        <Route path="visualizar_horarios" element={<ViewHoraryPage/>} />
+
       </Routes>
     </div>
   );

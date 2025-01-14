@@ -14,6 +14,8 @@ import { dataLocals } from "../../../data/cities.json"
 import API_URL from "../../../constants/api.ts"
 import { get_classes } from "../../../services/requests/get.js"
 import { formatAPIResponse } from "../../../services/requests/base.ts";
+import { useDispatch } from "react-redux";
+import { setImage, setTitle } from "../../../services/redux/reduxers/headerSlice.js";
 
 const StudentRegisterPage = () => {
     const navigate = useNavigate()    

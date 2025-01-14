@@ -4,6 +4,7 @@
   display: flex;
   width: 100%; /* Ocupar toda a largura disponível */
   overflow: visible; /* Permitir rolagem horizontal */
+  overflow-x: visible !important;
 }
 
 .main-container {
@@ -42,7 +43,7 @@ h2 {
 
   th {
     background-color: #388e3c;
-    color: white;
+    color: black;
   }
 
   td {
@@ -60,7 +61,7 @@ h2 {
   .dropdown-menu {
     position: absolute;
     top: 100%; /* Alinha o dropdown abaixo do botão */
-    left: 50%; /* Centraliza horizontalmente em relação ao botão */
+    left: 40%; /* Centraliza horizontalmente em relação ao botão */
     transform: translateX(-50%); /* Ajuste fino para alinhamento */
     background-color: #f5deb3; /* Fundo do dropdown */
     border: 1px solid #ccc;
@@ -70,6 +71,7 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    min-width: 20rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionar uma sombra leve */
   }
 

@@ -17,6 +17,8 @@ import gerenciar_cadastro from "./gerenciar_cadastro.png"
 import mensagem from "./mensagem.png"
 import monitorar_entrada from "./monitorar_entrada.png"
 import visualizar_notas from "./visualizar_notas.png"
+import presente from "./presente.png"
+import falta from "./falta.png"
 
 const IMAGES = {
     aviso,
@@ -36,7 +38,9 @@ const IMAGES = {
     gerenciar_cadastro,
     mensagem,
     monitorar_entrada,
-    visualizar_notas
+    visualizar_notas,
+    presente,
+    falta
 }
 
 export default IMAGES;

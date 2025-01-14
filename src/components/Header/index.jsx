@@ -9,7 +9,8 @@ import Button from "../Button";
 import useCheckAccessLevel from "../../services/utilities/checkAcessLevel.js"
 
 import { setImage, setTitle } from "../../services/redux/reduxers/headerSlice.js";
-
+import { clearUser } from "../../services/redux/reduxers/userSlice.js";
+import { clearEvents } from "../../services/redux/reduxers/eventsSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
@@ -24,6 +25,10 @@ const Header = () => {
 
     const deleteLevel = () => {
         localStorage.removeItem('level')
+        localStorage.removeItem('jwt')
+        dispatch(clearUser())
+        dispatch(clearEvents())
+
         setIsDropdownOpen(false)
         navigate('/')
         location.reload()

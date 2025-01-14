@@ -1,0 +1,24 @@
+@use "../../../style/breakpoints" as *;
+
+@media only screen and ($very-small) {
+    
+}
+
+@media only screen and ($small) {
+}
+
+@media only screen and ($medium) {
+}
+
+@media only screen and ($large) {
+
+}
+
+@media only screen and ($extra-large) {
+    .main-container{
+        width: 100%;
+    }
+}
+
+@media only screen and ($extra-extra-large) {    
+}
