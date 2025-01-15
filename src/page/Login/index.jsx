@@ -88,6 +88,30 @@ const Frame2 = ({ onFunction, level }) => {
 
         navigate('/Responsavel')
       }
+      else if(decodedData.level == 4){
+        localStorage.setItem("jwt", response.data.token)
+        localStorage.setItem("level", level.acessLevel)
+
+        dispatch(setUser(decodedData))
+        dispatch(setImage({headerImage: true}))
+        dispatch(setTitle({headerTitle: "Menu Principal"}))
+        if(level.acessLevel == 1){
+          navigate('/Responsavel')
+        }
+        else if(level.acessLevel == 2){
+          navigate('/Professor')
+        }
+        else if(level.acessLevel == 3){
+          navigate('/Coordenacao')
+        }
+        
+      }
+      else{
+        setMessageError("Usuario não autorizado!")
+        setTimeout(() => {
+          errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
     })
     .catch(err => {
       setMessageError("Login ou senha inválidos! ");

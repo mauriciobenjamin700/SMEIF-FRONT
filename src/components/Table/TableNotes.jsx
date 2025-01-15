@@ -285,7 +285,8 @@ const TableNotes = ({ tittle, data, columns = [], semester }) => {
       </div>
       <div className="table-container">
         {renderTable(currentStudentsData)}
-        <Button
+      </div>
+      <Button
           text={"Registrar Notas"}
           onFunction={() => {
             for (let i = 0; i < currentStudentsData.length; i++) {
@@ -293,7 +294,6 @@ const TableNotes = ({ tittle, data, columns = [], semester }) => {
             }
           }}
         />
-      </div>
     </div>
   );
 };
