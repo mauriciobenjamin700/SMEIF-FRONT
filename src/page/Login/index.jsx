@@ -106,6 +106,12 @@ const Frame2 = ({ onFunction, level }) => {
         }
         
       }
+      else{
+        setMessageError("Usuario não autorizado!")
+        setTimeout(() => {
+          errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
     })
     .catch(err => {
       setMessageError("Login ou senha inválidos! ");
