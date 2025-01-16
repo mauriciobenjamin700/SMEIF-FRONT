@@ -7,6 +7,9 @@ import Input from "../../../components/Input/index.jsx"
 import InputSelect from "../../../components/InputSelect/index.jsx";
 import Button from "../../../components/Button/index.jsx";
 
+import { put } from "../../../services/requests/index.js";
+import { updateParent } from "../../../services/parent/index.js";
+
 
 const   ParentManagementPage = () => {
     const navigate = useNavigate()
@@ -43,6 +46,16 @@ const   ParentManagementPage = () => {
         }));
     };
 
+    const handleSubmit = async () => {
+        console.log("ola mundo");
+        const response = await updateParent(formData);
+        console.log(response);
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+            alert(response.responseBody.detail);
+            //navigate("/Coordenacao/gerencia");
+        }
+    };
+
     return(
             <div className="main">
             <form action="" method="get">
@@ -51,6 +64,7 @@ const   ParentManagementPage = () => {
                 <Input
                     text="Nome completo: *"
                     place={data.name}
+                    value={data.name}
                     onChange={(value) => handleInputChange('name', value)}
                 />
                 <Input
@@ -63,12 +77,14 @@ const   ParentManagementPage = () => {
                 <Input
                     text="CPF: *"
                     place={data.cpf}
+                    value={data.cpf}
                     onChange={(value) => handleInputChange('cpf', value)}
                 />
                 
                 <InputSelect 
                     text={"Sexo:"}
                     place={data.gender}
+                    value={data.gender}
                     options={["Masculino", "Feminino"]}
                     onChange={(value) => handleInputChange('gender', value)}
                 />
@@ -78,11 +94,13 @@ const   ParentManagementPage = () => {
                 <Input
                     text="Telefone(fixo ou celular): *"
                     place={data.phone}
+                    value={data.phone}
                     onChange={(value) => handleInputChange('phone', value)}
                 />
                 <Input
                     text="Email: *"
                     place={data.email}
+                    value={data.email}
                     type={"email"}
                     onChange={(value) => handleInputChange('email', value)}
                 />
@@ -92,31 +110,37 @@ const   ParentManagementPage = () => {
                 <Input
                     text="Estado:"
                     place={data.state}
+                    value={data.state}
                     onChange={(value) => handleInputChange('state', value)}
                 />
                 <Input
                     text="Cidade:"
                     place={data.city}
+                    value={data.city}
                     onChange={(value) => handleInputChange('city', value)}
                 />
                 <Input
                     text="Bairro:"
                     place={data.neighborhood}
+                    value={data.neighborhood}
                     onChange={(value) => handleInputChange('neighborhood', value)}
                 />
                 <Input
                     text="Rua:"
                     place={data.street}
+                    value={data.street}
                     onChange={(value) => handleInputChange('street', value)}
                 />
                 <Input
                     text="Número:"
                     place={data.house_number}
+                    value={data.house_number}
                     onChange={(value) => handleInputChange('house_number', value)}
                 />
                 <Input
                     text="Complemento:"
                     place={data.complement}
+                    value={data.complement}
                     onChange={(value) => handleInputChange('complement', value)}
                 />
                 <div className="botoes-de-lado">
@@ -128,6 +152,7 @@ const   ParentManagementPage = () => {
                     <Button 
                         text={"Salvar Informações"} 
                         color={"#14AE5C"} 
+                        onFunction={handleSubmit}
                     />
                 </div>
                 <div className="remove-button">

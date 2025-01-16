@@ -1,106 +1,97 @@
-async function get(url) {
+import axios from 'axios';
+
+export async function get(url) {
     try {
-        const response = await fetch(url, {
-            method: 'GET',
+        const response = await axios.get("http://147.93.36.76:5009"+ url, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         });
-        const responseBody = await response.json();
         return {
             statusCode: response.status,
-            responseBody: responseBody
+            responseBody: response.data
         };
     } catch (error) {
         let errorDetail = 'Erro na request';
-        if (error.response && error.response.detail) {
-            errorDetail = error.response.detail;
+        if (error.response && error.response.data && error.response.data.detail) {
+            errorDetail = error.response.data.detail;
         }
+        console.log(error)
         return {
-            statusCode: 500,
+            statusCode: error.response ? error.response.status : 500,
             responseBody: { error: errorDetail }
         };
     }
 }
 
-async function post(url, body) {
+export async function post(url, body) {
     try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            },
-            body: JSON.stringify(body)
-        });
-
-        const responseBody = await response.json();
-        return {
-            statusCode: response.status,
-            responseBody: responseBody
-        };
-    } catch (error) {
-        let errorDetail = 'Erro na request';
-        if (error.response && error.response.detail) {
-            errorDetail = error.response.detail;
-        }
-        return {
-            statusCode: 500,
-            responseBody: { error: errorDetail }
-        };
-    }
-}
-
-async function put(url, body) {
-    try {
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            },
-            body: JSON.stringify(body)
-        });
-
-        const responseBody = await response.json();
-        return {
-            statusCode: response.status,
-            responseBody: responseBody
-        };
-    } catch (error) {
-        let errorDetail = 'Erro na request';
-        if (error.response && error.response.detail) {
-            errorDetail = error.response.detail;
-        }
-        return {
-            statusCode: 500,
-            responseBody: { error: errorDetail }
-        };
-    }
-}
-
-async function del(url) {
-    try {
-        const response = await fetch(url, {
-            method: 'DELETE',
+        const response = await axios.post("http://147.93.36.76:5009"+ url, body, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
             }
         });
-        const responseBody = await response.json();
         return {
             statusCode: response.status,
-            responseBody: responseBody
+            responseBody: response.data
         };
     } catch (error) {
         let errorDetail = 'Erro na request';
-        if (error.response && error.response.detail) {
-            errorDetail = error.response.detail;
+        if (error.response && error.response.data && error.response.data.detail) {
+            errorDetail = error.response.data.detail;
         }
         return {
-            statusCode: 500,
+            statusCode: error.response ? error.response.status : 500,
+            responseBody: { error: errorDetail }
+        };
+    }
+}
+
+export async function put(url, body) {
+    try {
+        const response = await axios.put("http://147.93.36.76:5009"+ url, body, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        });
+        return {
+            statusCode: response.status,
+            responseBody: response.data
+        };
+    } catch (error) {
+        let errorDetail = 'Erro na request';
+        if (error.response && error.response.data && error.response.data.detail) {
+            errorDetail = error.response.data.detail;
+        }
+        return {
+            statusCode: error.response ? error.response.status : 500,
+            responseBody: { error: errorDetail }
+        };
+    }
+}
+
+export async function del(url) {
+    try {
+        const response = await axios.delete("http://147.93.36.76:5009"+ url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+            }
+        });
+        return {
+            statusCode: response.status,
+            responseBody: response.data
+        };
+    } catch (error) {
+        let errorDetail = 'Erro na request';
+        if (error.response && error.response.data && error.response.data.detail) {
+            errorDetail = error.response.data.detail;
+        }
+        return {
+            statusCode: error.response ? error.response.status : 500,
             responseBody: { error: errorDetail }
         };
     }

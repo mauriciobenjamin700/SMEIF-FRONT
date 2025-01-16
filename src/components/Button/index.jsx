@@ -1,14 +1,14 @@
-const Button = ({text,color,onFunction}) => {
+const Button = ({text,color, disabled,onFunction}) => {
     if (color == null){
         return (
-            <button className="button" type="button" onClick={onFunction}>
+            <button className="button" type="button" onClick={onFunction} disabled={disabled}>
                 {text}
             </button>
         );
     }
     else{
         return (
-            <button style={{backgroundColor:color}} type="button" className="button" onClick={onFunction}>
+            <button style={{backgroundColor:color}} type="button" className="button" disabled={disabled} onClick={onFunction}>
                 {text}
             </button>
         );    
