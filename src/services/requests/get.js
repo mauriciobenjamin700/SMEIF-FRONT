@@ -1,5 +1,6 @@
 import axios from 'axios';
 import API_URL from '../../constants/api';
+import { get } from '.';
 
 
 export const get_teachers = async () => {
@@ -61,3 +62,9 @@ export const get_events = async () => {
         return []; // Retorna uma lista vazia em caso de erro
     }
 }
+
+export const getSelf = async (data) => {
+    const response = await get(`/user/get?user_cpf=${data.cpf}`);
+    console.log(response)
+    return response;
+};
