@@ -12,6 +12,7 @@ import './style/main.scss';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './services/redux/store.js';
+import ProfilePage from './page/Profile.jsx';
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/Coordenacao/*" element={<Coordination />} />
             <Route path="/Professor/*" element={<Teacher />} />
             <Route path="/Responsavel/*" element={<Parent />} />
+            <Route path="Perfil/" element={<ProfilePage/>} />
           </Routes>
           <Footer />
         </PersistGate>

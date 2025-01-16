@@ -1,232 +1,158 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import Input from "../components/Input/index.jsx"
-import InputSelect from "../components/InputSelect/index.jsx";
 import "../style/GenericRegister.scss";
+import "../page/Coordination/ManageRegistration/style/GenericManagement.scss";
+import Input from "../components/Input/index.jsx";
+import InputSelect from "../components/InputSelect/index.jsx";
 import Button from "../components/Button/index.jsx";
-import Modal from "../components/Modal/index.jsx";
 
-import API_URL from "../constants/api.ts"
-import { dataLocals } from "../data/cities.json"
-import { formatAPIResponse} from "../services/requests/base.ts"
-import UserRoles from "../constants/users.ts";
-import { useDispatch, useSelector } from "react-redux";
-import { setImage, setTitle } from "../services/redux/reduxers/headerSlice.js";
+import { put } from "../services/requests/index.js";
+import { updateParent } from "../services/parent/index.js";
+import { useSelector } from "react-redux";
 
 
-const ProfilePage = () => {
-    const dispatch = useDispatch()
-    dispatch(setImage({headerImage: true}))
-    dispatch(setTitle({headerTitle: "Cadastro de Responsavel"}))
-
-    const userData = useSelector((state) => state.user)
-
+const   ParentManagementPage = () => {
     const navigate = useNavigate()
 
+    const data = useSelector((state) => state.user)
+
+    const formatDateToInput = (date) => {
+        if (!date) return ""; // Retorna vazio caso a data seja nula
+        const [day, month, year] = date.split("/"); // Divide o formato BR
+        return `${year}-${month}-${day}`; // Reorganiza para o formato yyyy-MM-dd
+    };
+
     const [formData, setFormData] = useState({
-        cpf: userData.cpf,
-        name: userData.name,
-        birth_date: userData.birth_date,
-        gender: userData.gender,
-        phone: userData.phone,
-        email: userData.email,
-        address: {
-            state: userData.state,
-            city: userData.city,
-            neighborhood: userData.neighborhood,
-            street: userData.street,
-            house_number: userData.house_number,
-            complement: userData.complement,
-        }
-        
+        name: data.name,
+        birth_date: data.birth_date,
+        cpf: data.cpf,
+        gender: data.gender,
+        phone: data.phone,
+        email: data.email,
+        state: data.state,
+        city: data.city,
+        neighborhood: data.neighborhood,
+        street: data.street,
+        house_number: data.house_number,
+        complement: data.complement,
     });
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalText, setModalText] = useState("")
-    const [success, setsuccess] = useState(false)
-
-
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
-
-    const registerUser = () => {
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        }
-
-        if(formData.password.length > 7){
-            if(formData.password == formData.confirmPassword){
-                axios.post(`${API_URL}user/add`, formData, { headers })
-                .then((response) => {
-                    setModalText(formatAPIResponse(response.request.response))
-                    openModal()
-                    setsuccess(true)
-                })
-                .catch((err) => {
-                    const errMsg = formatAPIResponse(err.request.response)
-                    setModalText(errMsg)
-                    openModal()
-                })
-            }
-            else{
-                setModalText("As senhas devem ser iguais")
-                openModal()
-            }
-        }
-        else{
-            setModalText("A senha deve possuir no minimo 8 caracteres")
-            openModal()
-        }
-
-    }
-
     const handleInputChange = (field, value) => {
-        setFormData((prevData) => {
-            // Verifica se o campo é aninhado
-            if (field.includes('.')) {
-                const [parentField, childField] = field.split('.');
-                return {
-                    ...prevData,
-                    [parentField]: {
-                        ...prevData[parentField], // Mantém o restante das propriedades
-                        [childField]: value, // Atualiza apenas o campo específico
-                    },
-                };
-            }
-            // Campo não aninhado
-            return {
-                ...prevData,
-                [field]: value,
-            };
-        });
+        setFormData((prevData) => ({
+            ...prevData,
+            [field]: value,
+        }));
     };
-    
 
-    const optionsStates = dataLocals.flatMap((local) => ([
-        local.estado // Nome do estado, por exemplo, "Acre"
-    ]));
+    const handleSubmit = async () => {
+        console.log("ola mundo");
+        const response = await updateParent(formData);
+        console.log(response);
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+            alert(response.responseBody.detail);
+            //navigate("/Coordenacao/gerencia");
+        }
+    };
 
-
-    
     return(
             <div className="main">
-            <Modal isOpen={isModalOpen} onClose={closeModal}>
-                {(success && <>
-                    <h2>Cadastro realizado com sucesso!</h2>
-                    <p>{modalText}</p>
-                    <Button 
-                        onFunction={() => navigate("/Coordenacao/cadastro")}
-                        text={"Fechar"}
-                    />
-                
-                </>)}
-                {(!success && <>
-                    <h2>Erro ao realizar cadastro </h2>
-                    <p>{modalText}</p>
-                    <Button 
-                        onFunction={() => closeModal()}
-                        text={"Fechar"}
-                    />
-                </>)
-                }
-            </Modal>
             <form action="" method="get">
                 <h5>Dados Pessoais:</h5>
                 <hr />
                 <Input
-                    text="Nome completo: "
-                    place="Digite seu nome completo"
+                    text="Nome completo: *"
+                    place={data.name}
+                    value={data.name}
                     onChange={(value) => handleInputChange('name', value)}
                 />
                 <Input
                     type={"date"}
                     text="Data de nascimento:"
-                    place="DD/MM/AAAA"
+                    value={formatDateToInput(data.birth_date)}
                     onChange={(value) => handleInputChange('birth_date', value)}
             
                 />
                 <Input
-                    text="CPF:"
-                    place="Digite seu CPF"
+                    text="CPF: *"
+                    place={data.cpf}
+                    value={data.cpf}
                     onChange={(value) => handleInputChange('cpf', value)}
                 />
                 
                 <InputSelect 
                     text={"Sexo:"}
-                    place={"Selecione o sexo"}
-                    options={["M", "F"]}
+                    place={data.gender}
+                    value={data.gender}
+                    options={["M", "F", "Z"]}
                     onChange={(value) => handleInputChange('gender', value)}
                 />
 
                 <h5>Informações de contato:</h5>
                 <hr />
                 <Input
-                    text="Telefone(fixo ou celular): "
-                    place="Digite seu telefone"
+                    text="Telefone(fixo ou celular): *"
+                    place={data.phone}
+                    value={data.phone}
                     onChange={(value) => handleInputChange('phone', value)}
                 />
                 <Input
-                    text="Email: "
-                    place="Digite seu email"
+                    text="Email: *"
+                    place={data.email}
+                    value={data.email}
                     type={"email"}
                     onChange={(value) => handleInputChange('email', value)}
                 />
 
                 <h5>Endereço:</h5>
                 <hr />
-                <InputSelect
+                <Input
                     text="Estado:"
-                    place="Digite seu estado"
-                    options={optionsStates}
-                    onChange={(value) => handleInputChange('address.state', value)}
+                    place={data.state}
+                    value={data.state}
+                    onChange={(value) => handleInputChange('state', value)}
                 />
-                <InputSelect
+                <Input
                     text="Cidade:"
-                    place="Digite sua cidade"
-                    options={dataLocals.find((local) => local.estado === formData.address.state)?.cidades || []}
-                    onChange={(value) => handleInputChange('address.city', value)}
+                    place={data.city}
+                    value={data.city}
+                    onChange={(value) => handleInputChange('city', value)}
                 />
                 <Input
                     text="Bairro:"
-                    place="Digite seu bairro"
-                    onChange={(value) => handleInputChange('address.neighborhood', value)}
+                    place={data.neighborhood}
+                    value={data.neighborhood}
+                    onChange={(value) => handleInputChange('neighborhood', value)}
                 />
                 <Input
                     text="Rua:"
-                    place="Digite sua rua"
-                    onChange={(value) => handleInputChange('address.street', value)}
+                    place={data.street}
+                    value={data.street}
+                    onChange={(value) => handleInputChange('street', value)}
                 />
                 <Input
                     text="Número:"
-                    place="Digite o número"
-                    onChange={(value) => handleInputChange('address.house_number', value)}
+                    place={data.house_number}
+                    value={data.house_number}
+                    onChange={(value) => handleInputChange('house_number', value)}
                 />
                 <Input
                     text="Complemento:"
-                    place="Digite o complemento (opcional)"
-                    onChange={(value) => handleInputChange('address.complement', value)}
-                />
-
-                <h5>Senha:</h5>
-                <hr />
-                <Input
-                    text={"Senha: "}
-                    place={"Crie uma senha"}
-                    type={"password"}
-                    onChange={(value) => handleInputChange('password',value)}
-                />
-                <Input
-                    text={"Confirmar Senha: "}
-                    place={"Insira a mesma senha"}
-                    type={"password"}
-                    onChange={(value) => handleInputChange('confirmPassword',value)}
+                    place={data.complement}
+                    value={data.complement}
+                    onChange={(value) => handleInputChange('complement', value)}
                 />
                 <div className="botoes-de-lado">
-                    <Button text={"Cancelar"} color={"#C97414"} onFunction={() => navigate("/Coordenacao/cadastro")}/>
-                    <Button text={"Salvar Informações"} color={"#14AE5C"} onFunction={() => registerUser()} />
+                    <Button 
+                        text={"Cancelar"} 
+                        color={"#C97414"} 
+                        onFunction={() => navigate("/Coordenacao/gerencia")}
+                    />
+                    <Button 
+                        text={"Salvar Informações"} 
+                        color={"#14AE5C"} 
+                        onFunction={handleSubmit}
+                    />
                 </div>
             </form>
         </div>
@@ -234,4 +160,4 @@ const ProfilePage = () => {
 };
 
 
-export default ProfilePage;
+export default ParentManagementPage;

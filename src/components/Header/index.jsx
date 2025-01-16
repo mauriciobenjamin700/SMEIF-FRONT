@@ -57,7 +57,7 @@ const Header = () => {
                 <div className="dropdown">
                     <Button
                         text={"Perfil"}
-                        onFunction={() => navigate()}
+                        onFunction={() => navigate("Perfil")}
                         
                     />
                     <Button
