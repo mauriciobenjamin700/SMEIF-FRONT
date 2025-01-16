@@ -7,6 +7,7 @@ import "./Parent.scss";
 
 import IMAGES from "../../assets";
 import MonitorInputOutput from "./MonitorInputOutput";
+import ViewrInputOutput from "./MonitorInputOutput/ViewrInputOutput"
 import SearchSubject from "./SearchSubject/SearchSubject";
 const Menu = () => {
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ const Parent = () => {
         <Route path="selecionar_filho/*" element={<SelectChildPage />} />
         <Route path="monitorar_entrada/*" element={<MonitorInputOutput/>} />
         <Route path="visualizar_presencas/*" element={<SearchSubject/>} />
+
       </Routes>
     </div>
   );
