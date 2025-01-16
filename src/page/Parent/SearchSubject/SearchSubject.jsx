@@ -6,6 +6,7 @@ import Button from "../../../components/Button/index.jsx";
 import TableSubject from "../../../components/Table/TableSubject.jsx";
 
 import "./SearchSubjectPage.scss";
+import TableParentDiscipline from "../../../components/Table/TableParentDisciplines.jsx";
 
 const SearchSubjectPage = ({userType}) => {
     const navigate = useNavigate(); 
@@ -20,6 +21,8 @@ const SearchSubjectPage = ({userType}) => {
                 text={"Filtrar"} 
                 onFunction={() => searchStudent()}
             />
+
+            <TableParentDiscipline/>
             
             <div className="botoes-de-lado">
                 <Button

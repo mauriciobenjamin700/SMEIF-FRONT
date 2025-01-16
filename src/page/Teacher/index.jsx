@@ -32,11 +32,13 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.enviar_comunicado}
           text={"Envio de Mensagem para os pais"}
+          disabled={true}
           onFunction={() => navigate("gerenciar_turmas")}
         />
         <ImageButton
           path={IMAGES.mensagem}
           text={"Mensagens Recebidas"}
+          disabled={true}
           onFunction={() => navigate("registrar_ocorrencias")}
         />
       </div>

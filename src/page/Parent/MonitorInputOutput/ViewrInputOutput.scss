@@ -4,13 +4,13 @@
     height: 100vh;
     background-color: #ffffff;
     font-family: Arial, sans-serif;
+    
   
     .monitor-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: start;
       padding: 10px 20px;
-      background-color: #b9f2b6;
   
       .logo img {
         height: 50px;
@@ -39,7 +39,8 @@
     .monitor-content {
       flex-grow: 1;
       padding: 20px;
-      background-color: #f5f5f5;
+      justify-content: start;
+      gap: 50px;
   
       .status-section {
         background-color: #eaeaea;

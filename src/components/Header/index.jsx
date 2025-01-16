@@ -7,6 +7,7 @@ import IMAGES from "../../assets";
 import ImageButton from "../ImagemButton";
 import Button from "../Button";
 import useCheckAccessLevel from "../../services/utilities/checkAcessLevel.js"
+import ProfilePage from "../../page/Profile.jsx";
 
 import { setImage, setTitle } from "../../services/redux/reduxers/headerSlice.js";
 import { clearUser } from "../../services/redux/reduxers/userSlice.js";
@@ -56,6 +57,7 @@ const Header = () => {
                 <div className="dropdown">
                     <Button
                         text={"Perfil"}
+                        onFunction={() => navigate()}
                         
                     />
                     <Button
