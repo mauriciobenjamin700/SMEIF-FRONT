@@ -8,14 +8,17 @@ import InputSelect from "../components/InputSelect/index.jsx";
 import Button from "../components/Button/index.jsx";
 
 import { put } from "../services/requests/index.js";
-import { updateParent } from "../services/parent/index.js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelf } from "../services/requests/put.js";
+import { setUser, clearUser } from "../services/redux/reduxers/userSlice.js";
+import { getSelf } from "../services/requests/get.js";
 
 
-const   ParentManagementPage = () => {
+const   ProfilePage = () => {
     const navigate = useNavigate()
 
     const data = useSelector((state) => state.user)
+    const dispatch = useDispatch()
 
     const formatDateToInput = (date) => {
         if (!date) return ""; // Retorna vazio caso a data seja nula
@@ -38,6 +41,8 @@ const   ParentManagementPage = () => {
         complement: data.complement,
     });
 
+    console.log(formData.gender);
+
     const handleInputChange = (field, value) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -47,11 +52,15 @@ const   ParentManagementPage = () => {
 
     const handleSubmit = async () => {
         console.log("ola mundo");
-        const response = await updateParent(formData);
+        const response = await updateSelf(formData);
         console.log(response);
         if (response.statusCode >= 200 && response.statusCode < 300) {
             alert(response.responseBody.detail);
             //navigate("/Coordenacao/gerencia");
+            const new_data = await getSelf(formData)
+            console.log(new_data.responseBody);
+            dispatch(clearUser())
+            dispatch(setUser(new_data.responseBody))
         }
     };
 
@@ -160,4 +169,4 @@ const   ParentManagementPage = () => {
 };
 
 
-export default ParentManagementPage;
+export default ProfilePage;
