@@ -155,7 +155,7 @@ const   ProfilePage = () => {
                     <Button 
                         text={"Cancelar"} 
                         color={"#C97414"} 
-                        onFunction={() => navigate("/Coordenacao/gerencia")}
+                        onFunction={() => navigate(-1)}
                     />
                     <Button 
                         text={"Salvar Informações"} 
