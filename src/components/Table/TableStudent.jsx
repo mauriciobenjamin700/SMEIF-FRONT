@@ -89,7 +89,7 @@ const TableStudent = ({ tittle, data, functions, columns = [] }) => {
                         <div className="dropdown-menu">
                           <Button
                             text="Editar"
-                            onFunction={() => functions[0]("editar_pai/",{state: info})}
+                            onFunction={() => functions[0]("editar_estudante/",{state: info})}
                           />
                           <Button
                             text="Excluir"

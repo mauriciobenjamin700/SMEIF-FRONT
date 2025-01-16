@@ -34,6 +34,7 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.enviar_comunicado}
           text={"Enviar Comunicados"}
+          disabled={true}
           onFunction={() => navigate("enviar_comunicado")}
         />
         <ImageButton
@@ -44,6 +45,7 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.aviso}
           text={"Registrar Ocorrências e Advertências"}
+          disabled={true}
           onFunction={() => navigate("registrar_ocorrencias")}
         />
         <ImageButton

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "../../Coordination/RegisterPeople/style/StudentRegister.scss";
 import "../../../style/GenericRegister.scss";
@@ -12,10 +12,15 @@ import Button from "../../../components/Button/index.jsx";
 
 
 const StudentManagementPage = () => {
+    const location = useLocation()
+
+    const data = location.state || []
+
+
     const navigate = useNavigate()    
 
     const [firstResponsible, setFirstResponsible] = useState({
-        relationship: "",
+        kinship: "",
         responsibleCpf: "",
     });
 
@@ -23,7 +28,7 @@ const StudentManagementPage = () => {
 
     const addSecondResponsible = () => {
         setSecondResponsible({
-            relationship: "",
+            kinship: "",
             responsibleCpf: "",
         });
     };
@@ -32,12 +37,13 @@ const StudentManagementPage = () => {
         setSecondResponsible(null); // Remove o segundo responsável
     };
 
+    console.log(data)
 
     const [formData, setFormData] = useState({
-        name: '',
-        birthDate: '',
-        cpf: '',
-        gender: '',
+        name: data.name,
+        birth_date: data.birth_date,
+        cpf: data.cpf,
+        gender: data.gender,
         year: '',
         class: '',
         state: '',
@@ -58,82 +64,6 @@ const StudentManagementPage = () => {
     return(
             <div className="main">
             <form action="" method="get">
-                <h5>Dados Pessoais:</h5>
-                <hr />
-                <Input
-                    text="Nome completo: *"
-                    place="Digite seu nome completo"
-                    onChange={(value) => handleInputChange('name', value)}
-                />
-                <Input
-                    type={"date"}
-                    text="Data de nascimento:"
-                    place="DD/MM/AAAA"
-                    onChange={(value) => handleInputChange('birthDate', value)}
-            
-                />
-                <Input
-                    text="CPF: *"
-                    place="Digite seu CPF"
-                    onChange={(value) => handleInputChange('cpf', value)}
-                />
-                
-                <InputSelect 
-                    text={"Sexo:"}
-                    place={"Selecione o sexo"}
-                    options={["Masculino", "Feminino"]}
-                    onChange={(value) => handleInputChange('gender', value)}
-                />
-
-                <h5>Dados Acadêmicos:</h5>
-                <hr />
-                <InputSelect 
-                    text={"Ano/Série: *"}
-                    place={"Selecione o ano/série do aluno"}
-                    options={[]}
-                    onChange={(value) => handleInputChange('year', value)}
-                />
-
-                <InputSelect
-                    text={"Turma/Classe:"}
-                    place={"Selecione a turma/classe do aluno"}
-                    options={[]}
-                    onChange={(value) => handleInputChange('class',value)}
-                />
-
-                <h5>Endereço:</h5>
-                <hr />
-                <Input
-                    text="Estado:"
-                    place="Digite seu estado"
-                    onChange={(value) => handleInputChange('state', value)}
-                />
-                <Input
-                    text="Cidade:"
-                    place="Digite sua cidade"
-                    onChange={(value) => handleInputChange('city', value)}
-                />
-                <Input
-                    text="Bairro:"
-                    place="Digite seu bairro"
-                    onChange={(value) => handleInputChange('neighborhood', value)}
-                />
-                <Input
-                    text="Rua:"
-                    place="Digite sua rua"
-                    onChange={(value) => handleInputChange('street', value)}
-                />
-                <Input
-                    text="Número:"
-                    place="Digite o número"
-                    onChange={(value) => handleInputChange('number', value)}
-                />
-                <Input
-                    text="Complemento:"
-                    place="Digite o complemento (opcional)"
-                    onChange={(value) => handleInputChange('complement', value)}
-                />
-
                 <h5>Relação com Pais/Responsáveis:</h5>
                 <hr />
 
@@ -144,10 +74,10 @@ const StudentManagementPage = () => {
                     onChange={(value) =>
                         setFirstResponsible((prev) => ({
                             ...prev,
-                            relationship: value,
+                            kinship: value,
                         }))
                     }
-                    value={firstResponsible.relationship}
+                    value={firstResponsible.kinship}
                 />
                 <Input
                     text="CPF do Pai/Responsável (1):"
@@ -171,10 +101,10 @@ const StudentManagementPage = () => {
                         onChange={(value) =>
                             setSecondResponsible((prev) => ({
                                 ...prev,
-                                relationship: value,
+                                kinship: value,
                             }))
                         }
-                        value={secondResponsible.relationship}
+                        value={secondResponsible.kinship}
                     />
                     <Input
                         text="CPF do Pai/Responsável (2):"

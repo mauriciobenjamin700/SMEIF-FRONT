@@ -41,6 +41,7 @@ const ViewHoraryPage = () => {
     },[])   
 
     return (
+        <>
         <div className="box-menu">
             <TableHorary
                 columns={[
@@ -56,12 +57,14 @@ const ViewHoraryPage = () => {
                 horarys={HORARY}
 
             />
-            <Button
+            
+        </div>
+        <Button
                 text={"Voltar"}
                 onFunction={() => navigate("/Professor")}
                 color={"#E8B931"}
             />
-        </div>
+        </>
     );
 };
 

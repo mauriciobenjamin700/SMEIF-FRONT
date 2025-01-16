@@ -78,7 +78,7 @@ const SearchStudent = () => {
         <div>
             <Routes>
                 <Route path="/" element={<SearchStudentPage/>} />
-                <Route path="editar_pai/" element={<StudentManagementPage/>}/>
+                <Route path="editar_estudante/" element={<StudentManagementPage/>}/>
             </Routes>
         </div>
     );

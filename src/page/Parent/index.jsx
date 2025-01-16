@@ -7,7 +7,9 @@ import "./Parent.scss";
 
 import IMAGES from "../../assets";
 import MonitorInputOutput from "./MonitorInputOutput";
+import ViewrInputOutput from "./MonitorInputOutput/ViewrInputOutput"
 import SearchSubject from "./SearchSubject/SearchSubject";
+import ViewNotes from "./ViewNotes";
 const Menu = () => {
   const navigate = useNavigate();
 
@@ -26,21 +28,24 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.visualizar_notas}
           text={"Visualizar notas e médias"}
-          onFunction={() => navigate("enviar_comunicado")}
+          onFunction={() => navigate("visualizar_notas")}
         />
         <ImageButton
           path={IMAGES.enviar_comunicado}
           text={"Envio de Mensagem para a escola"}
+          disabled={true}
           onFunction={() => navigate("gerenciar_turmas")}
         />
         <ImageButton
           path={IMAGES.mensagem}
           text={"Mensagens Recebidas"}
+          disabled={true}
           onFunction={() => navigate("registrar_ocorrencias")}
         />
         <ImageButton
           path={IMAGES.calendario}
           text={"Gerenciar Horários"}
+          disabled={true}
           onFunction={() => navigate("gerenciar_horarios")}
         />
       </div>
@@ -55,6 +60,8 @@ const Parent = () => {
         <Route path="selecionar_filho/*" element={<SelectChildPage />} />
         <Route path="monitorar_entrada/*" element={<MonitorInputOutput/>} />
         <Route path="visualizar_presencas/*" element={<SearchSubject/>} />
+        <Route path="visualizar_notas/" element={<ViewNotes/>} />
+
       </Routes>
     </div>
   );
