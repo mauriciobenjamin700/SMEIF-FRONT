@@ -31,16 +31,19 @@ const Menu = () => {
         <ImageButton
           path={IMAGES.enviar_comunicado}
           text={"Envio de Mensagem para a escola"}
+          disabled={true}
           onFunction={() => navigate("gerenciar_turmas")}
         />
         <ImageButton
           path={IMAGES.mensagem}
           text={"Mensagens Recebidas"}
+          disabled={true}
           onFunction={() => navigate("registrar_ocorrencias")}
         />
         <ImageButton
           path={IMAGES.calendario}
           text={"Gerenciar Horários"}
+          disabled={true}
           onFunction={() => navigate("gerenciar_horarios")}
         />
       </div>
